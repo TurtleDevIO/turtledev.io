@@ -1,38 +1,114 @@
-# sv
+# TurtleDev.io
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Personal software development blog built with SvelteKit, DaisyUI, and MDsveX.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- 📝 Markdown-based blog posts with MDsveX
+- 🎨 PaperMod-inspired theme with DaisyUI
+- 🌓 Dark/light mode toggle with system preference detection
+- ⚡ Static site generation with adapter-static
+- 🎯 Syntax highlighting with Shiki
+- 📊 Vercel Analytics integration
+- 🚀 Automated deployments via GitHub Actions
 
-```sh
-# create a new project in the current directory
-npx sv create
+## Tech Stack
 
-# create a new project in my-app
-npx sv create my-app
+- **SvelteKit 5** - Modern Svelte framework with runes
+- **TypeScript** - Type-safe development
+- **TailwindCSS v4** - Utility-first CSS
+- **DaisyUI** - Component library
+- **MDsveX** - Markdown processing for Svelte
+- **Shiki** - Beautiful syntax highlighting
+
+## Development
+
+Install dependencies:
+
+```bash
+npm install
 ```
 
-## Developing
+Start development server:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+```bash
 npm run dev
 
-# or start the server and open the app in a new browser tab
+# or open in browser
 npm run dev -- --open
 ```
 
 ## Building
 
-To create a production version of your app:
+Build for production:
 
-```sh
+```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+Preview production build:
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+```bash
+npm run preview
+```
+
+## Deployment
+
+This project uses automated deployments via GitHub Actions:
+
+- **Pull Requests**: Automatically deploy preview on Vercel
+- **Main Branch**: Automatically deploy to production on merge
+
+### Setup GitHub Secrets
+
+See [.github/VERCEL_SETUP.md](.github/VERCEL_SETUP.md) for instructions on configuring:
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+## Git Workflow
+
+⚠️ **Never push directly to main branch**
+
+1. Create a feature branch
+2. Make your changes
+3. Create a pull request
+4. Review and merge
+
+## Project Structure
+
+```
+src/
+├── lib/
+│   ├── components/     # Reusable components
+│   ├── utils/          # Utility functions
+│   ├── config.ts       # Site configuration
+│   └── types.ts        # TypeScript types
+├── posts/              # Blog posts (markdown)
+├── routes/
+│   ├── blog/           # Blog routes
+│   └── api/            # API endpoints
+└── app.css             # Global styles
+```
+
+## Writing Blog Posts
+
+Create a new markdown file in `src/posts/`:
+
+```markdown
+---
+title: "Your Post Title"
+description: "Brief description"
+date: "2025-01-15"
+categories: ["category1", "category2"]
+published: true
+---
+
+# Your Content Here
+```
+
+## Documentation
+
+- [CLAUDE.md](CLAUDE.md) - Guidelines for Claude Code
+- [BLOG_IMPLEMENTATION_PLAN.md](BLOG_IMPLEMENTATION_PLAN.md) - Implementation plan
+- [BLOG_POST_DRAFT.md](BLOG_POST_DRAFT.md) - Tutorial blog post draft
