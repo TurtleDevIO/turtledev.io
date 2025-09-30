@@ -1,20 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getTheme, toggleTheme, isDarkTheme, type Theme } from '$lib/utils/theme';
+	import { themeStore } from '$lib/utils/theme.svelte';
 
-	let currentTheme = $state<Theme>('papermod');
 	let mounted = $state(false);
 
 	onMount(() => {
-		currentTheme = getTheme();
+		themeStore.init();
 		mounted = true;
-		console.log('ThemeToggle mounted, current theme:', currentTheme);
 	});
 
 	function handleToggle() {
-		console.log('Toggle clicked, current theme:', currentTheme);
-		currentTheme = toggleTheme();
-		console.log('New theme:', currentTheme);
+		themeStore.toggle();
 	}
 </script>
 
@@ -23,9 +19,9 @@
 		onclick={handleToggle}
 		class="btn btn-ghost btn-sm btn-circle"
 		aria-label="Toggle theme"
-		title={isDarkTheme(currentTheme) ? 'Switch to light mode' : 'Switch to dark mode'}
+		title={themeStore.isDark ? 'Switch to light mode' : 'Switch to dark mode'}
 	>
-		{#if isDarkTheme(currentTheme)}
+		{#if themeStore.isDark}
 			<!-- Sun icon for light mode -->
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
