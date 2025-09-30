@@ -42,3 +42,20 @@ The project uses two preprocessors configured in `svelte.config.js`:
 - MDsveX requires both preprocessors in correct order (vitePreprocess first)
 - The `prepare` script runs `svelte-kit sync` to generate types
 - Use `adapter-static` or prerendering for static generation when deploying
+
+## Git Workflow
+
+- **NEVER push directly to main branch**
+- Always work in a feature branch
+- Create a pull request for review
+- Merge to main only through PRs
+- GitHub Actions will automatically deploy:
+  - Preview deployments for PRs
+  - Production deployments on merge to main
+
+## Vercel Deployment
+
+- Deployments are automated via GitHub Actions
+- Preview URL is posted as a comment on PRs
+- Production deploys automatically on merge to main
+- See `.github/VERCEL_SETUP.md` for secrets configuration
