@@ -2,3 +2,8 @@
 // pages by setting this here, but should prerender as many as possible to
 // avoid large performance and SEO impacts
 export const prerender = true;
+
+import { dev } from '$app/environment';
+import { injectAnalytics } from '@vercel/analytics/sveltekit';
+ 
+injectAnalytics({ mode: dev ? 'development' : 'production' });
