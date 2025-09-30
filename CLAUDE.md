@@ -47,7 +47,8 @@ The project uses two preprocessors configured in `svelte.config.js`:
 
 - **NEVER push directly to main branch**
 - Always work in a feature branch
-- Create a pull request for review
+- Push feature branches to remote
+- **User creates PRs manually** (do not use `gh pr create` command)
 - Merge to main only through PRs
 - GitHub Actions will automatically deploy:
   - Preview deployments for PRs
