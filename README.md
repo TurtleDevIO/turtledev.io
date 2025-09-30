@@ -61,10 +61,11 @@ This project uses automated deployments via GitHub Actions:
 
 ### Setup GitHub Secrets
 
-See [.github/VERCEL_SETUP.md](.github/VERCEL_SETUP.md) for instructions on configuring:
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
+Add these secrets to your GitHub repository (Settings → Secrets and variables → Actions):
+
+1. **VERCEL_TOKEN**: Get from https://vercel.com/account/tokens
+2. **VERCEL_ORG_ID**: Found in `.vercel/project.json` (orgId)
+3. **VERCEL_PROJECT_ID**: Found in `.vercel/project.json` (projectId)
 
 ## Git Workflow
 

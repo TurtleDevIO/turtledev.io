@@ -58,4 +58,4 @@ The project uses two preprocessors configured in `svelte.config.js`:
 - Deployments are automated via GitHub Actions
 - Preview URL is posted as a comment on PRs
 - Production deploys automatically on merge to main
-- See `.github/VERCEL_SETUP.md` for secrets configuration
+- Required secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID (see README)
