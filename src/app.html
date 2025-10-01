@@ -2,10 +2,26 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+
+		<link
+			href="%sveltekit.assets%/images/favicon-light.png"
+			media="(prefers-color-scheme: light)"
+			rel="icon"
+			type="image/png"
+		/>
+		<link
+			href="%sveltekit.assets%/images/favicon-dark.png"
+			media="(prefers-color-scheme: dark)"
+			rel="icon"
+			type="image/png"
+		/>
+
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 		<script>
 			// Initialize theme before page render to prevent flash
-			const theme = localStorage.getItem('theme') ||
+			const theme =
+				localStorage.getItem('theme') ||
 				(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'papermod_dark' : 'papermod');
 			document.documentElement.setAttribute('data-theme', theme);
 		</script>

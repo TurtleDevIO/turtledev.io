@@ -3,7 +3,7 @@
 	import ThemeToggle from './ThemeToggle.svelte';
 	import { themeStore } from '$lib/utils/theme.svelte';
 
-	let iconSrc = $derived(themeStore.isDark ? '/icon-dark.png' : '/icon-light.png');
+	let iconSrc = $derived(themeStore.isDark ? '/images/icon-dark.png' : '/images/icon-light.png');
 </script>
 
 <header class="sticky top-0 z-50 bg-base-100/80 backdrop-blur-sm border-b border-base-300">
