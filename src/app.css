@@ -1,36 +1,8 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
-@plugin 'daisyui';
-
-/* DaisyUI theme configuration for TailwindCSS v4 */
-@theme {
-	--color-primary: #1e90ff;
-	--color-secondary: #9b9c9d;
-	--color-accent: #4169e1;
-	--color-neutral: #2e2e33;
-	--color-base-100: #ffffff;
-	--color-base-200: #f8f9fa;
-	--color-base-300: #e9ecef;
-	--color-base-content: #1d1e20;
-	--color-info: #3abff8;
-	--color-success: #36d399;
-	--color-warning: #fbbd23;
-	--color-error: #f87272;
+@plugin "daisyui" {
+  themes: lemonade --default, forest --prefersdark;
 }
-
-[data-theme='papermod_dark'] {
-	--color-base-100: #1d1e20;
-	--color-base-200: #2e2e33;
-	--color-base-300: #414243;
-	--color-base-content: #dadadb;
-	--color-neutral: #414243;
-}
-
-/* PaperMod-inspired custom styles */
-:root {
-	--radius: 8px;
-}
-
 html {
 	scroll-behavior: smooth;
 }
