@@ -3,6 +3,12 @@
 @plugin "daisyui" {
   themes: lemonade --default, forest --prefersdark;
 }
+@plugin "daisyui/theme" {
+  name: "forest"; 
+  --color-base-200: #2E2E33;
+}
+
+
 html {
 	scroll-behavior: smooth;
 }
