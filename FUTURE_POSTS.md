@@ -1,0 +1,1 @@
+- Svelte SPA setup with FastAPI backend

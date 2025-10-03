@@ -5,4 +5,5 @@ export interface Post {
 	categories: string[];
 	published: boolean;
 	slug: string;
+	readingTime?: number;
 }

@@ -4,6 +4,7 @@ description: "Welcome to my blog! This is my first post where I introduce myself
 date: "2025-01-15"
 categories: ["meta", "introduction"]
 published: true
+readingTime: 2
 ---
 
 # Hello World!
