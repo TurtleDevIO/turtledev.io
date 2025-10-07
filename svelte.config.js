@@ -25,7 +25,10 @@ const config = {
 	preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
 	kit: {
 		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-		adapter: adapter()
+		adapter: adapter(),
+		prerender: {
+			entries: ['*', '/sitemap.xml']
+		}
 	},
 	extensions: ['.svelte', '.md', '.svx']
 };

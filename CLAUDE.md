@@ -4,9 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a statically generated personal software development blog built with SvelteKit. The primary purpose is to provide quality technical content and drive attention to B2C projects such as fastsvelte.dev.
+This is a statically generated personal software development blog built with SvelteKit. The primary purpose is to provide quality technical content and drive attention to B2C projects such as [Fastsvelte](https://fastsvelte.dev/).
 
-## Architecture
 
 ### Preprocessors
 The project uses two preprocessors configured in `svelte.config.js`:
@@ -31,7 +30,9 @@ The project uses two preprocessors configured in `svelte.config.js`:
 
 ## Content Strategy
 
-- Blog posts written in Markdown (`.svx` files) with MDsveX
+- Blog posts are stored in `src/posts/` directory
+- Blog posts written in Markdown (`.md` or `.svx` files) with MDsveX
+- Post frontmatter includes: title, description, date, categories, published, readingTime
 - Focus on high-quality technical content
 - Drive traffic to B2C projects like fastsvelte.dev
 - Static site generation for optimal performance and SEO
