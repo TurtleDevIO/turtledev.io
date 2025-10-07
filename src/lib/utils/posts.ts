@@ -17,8 +17,12 @@ export async function getPosts(): Promise<Post[]> {
 	// Import raw markdown content
 	const mdPaths = import.meta.glob('/src/posts/*.md', { eager: true, query: '?raw', import: 'default' });
 
+	
+
 	// Import metadata
 	const metaPaths = import.meta.glob('/src/posts/*.md', { eager: true });
+
+	console.log('metaPaths:', metaPaths);
 
 	for (const path in metaPaths) {
 		const file = metaPaths[path];

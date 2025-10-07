@@ -2,6 +2,28 @@
 	let { data } = $props();
 </script>
 
+<svelte:head>
+	<title>{data.meta.title} - Turtle Dev</title>
+	<meta name="description" content={data.meta.description} />
+
+	<!-- Open Graph -->
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content={data.meta.title} />
+	<meta property="og:description" content={data.meta.description} />
+	<meta property="og:url" content={`https://turtledev.io/blog/${data.meta.slug}`} />
+	<meta property="article:published_time" content={data.meta.date} />
+	{#each data.meta.categories as category}
+		<meta property="article:tag" content={category} />
+	{/each}
+
+	<!-- Twitter Card -->
+	<meta name="twitter:title" content={data.meta.title} />
+	<meta name="twitter:description" content={data.meta.description} />
+
+	<!-- Canonical URL -->
+	<link rel="canonical" href={`https://turtledev.io/blog/${data.meta.slug}`} />
+</svelte:head>
+
 <article class="container mx-auto px-4 py-12 max-w-3xl">
 	<header class="mb-12 pb-8 border-b border-base-300">
 		<h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">{data.meta.title}</h1>
