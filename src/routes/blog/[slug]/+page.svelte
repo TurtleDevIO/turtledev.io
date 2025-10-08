@@ -1,16 +1,18 @@
 <script lang="ts">
+	import { siteConfig } from '$lib/config';
+
 	let { data } = $props();
 </script>
 
 <svelte:head>
-	<title>{data.meta.title} - Turtle Dev</title>
+	<title>{data.meta.title} - {siteConfig.name}</title>
 	<meta name="description" content={data.meta.description} />
 
 	<!-- Open Graph -->
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={data.meta.title} />
 	<meta property="og:description" content={data.meta.description} />
-	<meta property="og:url" content={`https://turtledev.io/blog/${data.meta.slug}`} />
+	<meta property="og:url" content={`${siteConfig.url}/blog/${data.meta.slug}`} />
 	<meta property="article:published_time" content={data.meta.date} />
 	{#each data.meta.categories as category}
 		<meta property="article:tag" content={category} />
@@ -21,7 +23,37 @@
 	<meta name="twitter:description" content={data.meta.description} />
 
 	<!-- Canonical URL -->
-	<link rel="canonical" href={`https://turtledev.io/blog/${data.meta.slug}`} />
+	<link rel="canonical" href={`${siteConfig.url}/blog/${data.meta.slug}`} />
+
+	<!-- JSON-LD Schema -->
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": ${JSON.stringify(data.meta.title)},
+		"description": ${JSON.stringify(data.meta.description)},
+		"datePublished": ${JSON.stringify(data.meta.date)},
+		"author": {
+			"@type": "Person",
+			"name": ${JSON.stringify(siteConfig.author)}
+		},
+		"publisher": {
+			"@type": "Organization",
+			"name": ${JSON.stringify(siteConfig.name)},
+			"logo": {
+				"@type": "ImageObject",
+				"url": "${siteConfig.url}${siteConfig.ogImage}"
+			}
+		},
+		"mainEntityOfPage": {
+			"@type": "WebPage",
+			"@id": "${siteConfig.url}/blog/${data.meta.slug}"
+		},
+		"keywords": ${JSON.stringify(data.meta.categories.join(', '))},
+		"articleSection": ${JSON.stringify(data.meta.categories[0] || 'Technology')},
+		"timeRequired": "PT${data.meta.readingTime}M"
+	}
+	<\/script>`}
 </svelte:head>
 
 <article class="container mx-auto px-4 py-12 max-w-3xl">

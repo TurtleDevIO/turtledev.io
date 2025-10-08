@@ -15,8 +15,8 @@
 - [ ] Submit sitemap to Google Search Console and Bing Webmaster Tools
 
 ### Structured Data
-- [ ] Add JSON-LD schema markup for Article/BlogPosting on blog posts
-- [ ] Implement Organization schema on homepage
+- [x] Add JSON-LD schema markup for Article/BlogPosting on blog posts
+- [x] Implement Organization schema on homepage
 - [ ] Add breadcrumb schema for navigation
 
 ### Performance & Core Web Vitals
@@ -36,3 +36,20 @@
 - [ ] Ensure mobile responsiveness (test with Google Mobile-Friendly Test)
 - [ ] Set up analytics tracking (Google Analytics/Plausible)
 - [ ] Configure proper cache headers in deployment settings
+
+## Template Repository Setup
+
+### Centralize Configuration
+- [x] Audit all hardcoded values across the codebase (site name, URLs, author, etc.)
+- [x] Move all configuration to `src/lib/config.ts` (expanded with title, longDescription, keywords, ogImage)
+- [x] Update all files to use config values instead of hardcoded strings
+  - [x] `src/app.html` - removed meta tags (moved to +layout.svelte)
+  - [x] `src/routes/+layout.svelte` - added dynamic meta tags using siteConfig
+  - [x] `src/routes/sitemap.xml/+server.ts` - uses siteConfig.url
+  - [x] `src/routes/blog/[slug]/+page.svelte` - uses siteConfig for all URLs and names
+  - [x] `src/routes/+page.svelte` - added Organization schema using siteConfig
+
+### GitHub Template
+- [ ] Enable "Template repository" in GitHub settings
+- [ ] Create comprehensive README with setup instructions
+- [ ] Add template usage guide (how to customize config, add posts, deploy)

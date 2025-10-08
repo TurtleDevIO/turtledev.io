@@ -23,31 +23,27 @@ But in reality? It didn’t take long before the cracks showed up.
 * Every page render was triggering backend logic that didn’t really belong in the frontend.
 * And because I needed **AI features and heavy data processing**, I still had to maintain a **Python backend** for those tasks.
 
-At some point, I realized I was maintaining **two backends** — one for frontend with SSR and another for AI backend — both reading and writing to the same database.
-It felt messy and inefficient. 🥴
+At some point, I realized I was maintaining **two backends** — one for frontend with SSR and another for AI backend — both reading and writing to the same database and also talking to each other. 
 
----
 
-## When SEO Doesn’t Matter (as Much as You Think)
+## When SEO Doesn’t Matter
 
-One of the main selling points of SSR is **SEO**.
-But let’s be honest — for a **SaaS dashboard**, SEO doesn’t really matter.
+One of the main selling points of SSR is **SEO**. But for a **SaaS dashboard**, SEO doesn’t really matter. 
 
-Your authenticated app isn’t being crawled by Google anyway.
-SEO matters for your *marketing site*, *landing pages*, and *blog posts* — not your user dashboard.
+Your authenticated app isn’t being crawled by Google anyway. SEO matters for your *marketing site*, *landing pages*, and *blog posts* — not your user dashboard.
 
 And for those, a **separate SvelteKit app** with **static generation** gives you way more flexibility and blazing speed.
 In one of the AI startups I worked at, our landing page was built with **WordPress** and no one from the dev team was responsible for it. It was marketing team's reponsibility. So, I highly recommend to separate your marketing site and the actual SaaS app. For example, host the landing page on *mysaas.com* and the app on app.mysaas.com. 
----
 
-## 🧩 Why Vercel Pushes SSR
+
+## Why Vercel Pushes SSR
 
 Vercel’s business model is built around **serverless rendering**, not static hosting.
 SSR keeps apps running on their infrastructure continuously, which means more usage → more billing.
 It’s not a bad thing — it just means SSR is what fits *their* model, not necessarily *yours*.
 
 If your app doesn’t need SEO and runs mostly behind login, **static + API** is cheaper, faster, and simpler to scale.
----
+
 
 ## The Hosting Reality
 
@@ -75,7 +71,6 @@ For the database, you can even use the **free Postgres instance on Vercel**.
 Or, if you prefer, keep your **frontend + DB** on Vercel and your **backend** on Azure (or any other provider).
 This flexibility is exactly what I love about separating concerns.
 
----
 
 ## After Switching to SPA + FastAPI
 
@@ -89,22 +84,20 @@ Need to update the backend schema? Do it safely, without breaking the UI.
 
 Yes, you need to set up **two pipelines** — but with **GitHub Actions** it's very easy and AI tools are great at generating YAMLs now. I use a simple workflow for the frontend:
 
----
 
 ## Bonus: How to Get Azure Credits
 
 If you have a startup, you can get **free Azure credits** through the **[Microsoft for Startups Founders Hub](https://www.microsoft.com/startups)** program. Most startups are eligible, for at least $5000 in credits. I got $25,000 in credits for my startup, which is more than enough to cover hosting costs for the first year or two.
 
----
+
 
 
 ## Bonus 2: Client Code Generation
 
 With FastAPI’s OpenAPI spec, you can generate API client code automatically with **[Orval](https://orval.dev)** (for TypeScript) or **OpenAPI Generator**. This means whenever you update your backend API, you just regenerate the client code and your frontend stays in sync.
 No more writing fetch wrappers manually — your SPA gets typed functions for every endpoint.
-(We’ll cover this in detail in an upcoming post 😉)
+(I’ll cover this in detail in an upcoming post 😉)
 
----
 
 ## What’s Next
 
