@@ -1,11 +1,12 @@
 import { getPosts } from '$lib/utils/posts';
+import { siteConfig } from '$lib/config';
 import type { RequestHandler } from './$types';
 
 export const prerender = true;
 
 export const GET: RequestHandler = async () => {
 	const posts = await getPosts();
-	const siteUrl = 'https://turtledev.io';
+	const siteUrl = siteConfig.url;
 
 	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
