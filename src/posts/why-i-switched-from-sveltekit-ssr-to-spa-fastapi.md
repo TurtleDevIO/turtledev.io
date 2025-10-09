@@ -1,6 +1,6 @@
 ---
-title: "Why I Built My SaaS with Svelte + FastAPI (and Why You Might Too)"
-description: "An in-depth look at why I chose Svelte and FastAPI for my SaaS application, including the benefits and trade-offs of this modern tech stack."
+title: "Why I Switched from SvelteKit SSR to SPA + FastAPI"
+description: "How separating frontend and backend brought instant navigation, cleaner architecture, independent deployments, and happier development."
 date: "2025-10-06"
 categories: ["svelte", "fastapi", "saas", "web-development", "sveltekit"]
 published: true

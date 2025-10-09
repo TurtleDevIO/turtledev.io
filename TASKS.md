@@ -19,12 +19,6 @@
 - [x] Implement Organization schema on homepage
 - [ ] Add breadcrumb schema for navigation
 
-### Performance & Core Web Vitals
-- [ ] Optimize images (use WebP format, add width/height attributes)
-- [ ] Implement lazy loading for images below the fold
-- [ ] Add preload tags for critical resources in `src/app.html`
-- [ ] Minimize JavaScript bundle size (check with Lighthouse)
-
 ### Content & URLs
 - [ ] Ensure all blog posts have descriptive, SEO-friendly URLs
 - [ ] Add canonical URLs to prevent duplicate content issues
@@ -53,3 +47,29 @@
 - [ ] Enable "Template repository" in GitHub settings
 - [ ] Create comprehensive README with setup instructions
 - [ ] Add template usage guide (how to customize config, add posts, deploy)
+
+## Content Creation and SEO Strategy
+
+### Blog Post 1: Svelte SPA + FastAPI Integration Tutorial (45 mins)
+
+- [ ] Research keywords for target audience for blog post 1 (1o mins)
+- [ ] Find 3-5 relevant Reddit/StackOverflow threads to link to (10 mins)
+- [ ] Create accounts with turtledev.io email on Reddit, StackOverflow, Dev.to (10 mins)
+- [ ] Share blog post on these platforms with thoughtful comments (15 mins)
+
+### Blog Post 2: Svelte SPA and FastAPI integration tutorial (2.5-3 hours)
+
+- [ ] Decide on the blog post outline and structure (5 mins)
+- [ ] Write the blog post (60-90 mins)
+- [ ] Create example repo on GitHub (15 mins)
+- [ ] Write the frontmatter (title, description, keywords) (10 mins)
+- [ ] Add internal links to related posts (5 mins)
+- [ ] Research keywords for target audience for blog post 1 (1o mins)
+- [ ] Find 3-5 relevant Reddit/StackOverflow threads to link to (10 mins)
+- [ ] Create accounts with turtledev.io email on Reddit, StackOverflow, Dev.to (10 mins)
+- [ ] Share blog post on these platforms with thoughtful comments (15 mins)
+
+### Blog Post 2: YouTube Tutorial - Svelte SPA + FastAPI Integration (1.5-2 hours)
+- [ ] Record screen walkthrough (no editing, raw) (30-45 mins)
+- [ ] Editing (cut out mistakes, add intro/outro) (15 mins)
+- [ ] Upload to YouTube with SEO-optimized title, description, tags (10 mins)
