@@ -57,8 +57,7 @@
 </svelte:head>
 
 <article class="container mx-auto px-4 py-12 max-w-3xl">
-	<header class="mb-12 pb-8 border-b border-base-300">
-		<h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">{data.meta.title}</h1>
+	<header class="mb-8 pb-6 border-b border-base-300">
 		<div class="flex items-center gap-3 text-sm text-base-content/60">
 			<time datetime={data.meta.date}>{data.meta.date}</time>
 			{#if data.meta.categories.length > 0}
