@@ -3,16 +3,21 @@ import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { createHighlighter } from 'shiki';
 
+// Cache the highlighter instance to avoid creating multiple instances
+let highlighterInstance;
+
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
 	extensions: ['.md', '.svx'],
 	highlight: {
 		highlighter: async (code, lang = 'text') => {
-			const highlighter = await createHighlighter({
-				themes: ['github-dark'],
-				langs: ['javascript', 'typescript', 'svelte', 'bash', 'css', 'html']
-			});
-			const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: 'github-dark' }));
+			if (!highlighterInstance) {
+				highlighterInstance = await createHighlighter({
+					themes: ['github-dark'],
+					langs: ['javascript', 'typescript', 'svelte', 'bash', 'css', 'html', 'python', 'json']
+				});
+			}
+			const html = escapeSvelte(highlighterInstance.codeToHtml(code, { lang, theme: 'github-dark' }));
 			return `{@html \`${html}\` }`;
 		}
 	}

@@ -10,8 +10,8 @@ export const siteConfig = {
 	email: 'hello@turtledev.io',
 	ogImage: '/images/og-image.png',
 	socials: {
-		youtube: 'https://youtube.com/@turtledev',
-		github: 'https://github.com/harunsasmaz',
+		youtube: 'https://youtube.com/@TurtleDevIO',
+		github: 'https://github.com/harunzafer',
 		kofi: 'https://ko-fi.com/turtledev'
 	}
 };
