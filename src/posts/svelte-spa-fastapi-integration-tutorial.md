@@ -42,22 +42,42 @@ todo-app/
 
 ## Backend: FastAPI Setup
 
-Let's start with the backend. Create a `backend` directory and add these files:
-
-### requirements.txt
-
-```txt
-fastapi==0.115.0
-uvicorn==0.32.0
-pydantic==2.9.0
-```
-
-Install dependencies:
+Let's start with the backend. Create a `backend` directory and set up a virtual environment:
 
 ```bash
 cd backend
+python3 -m venv .venv  # Or python3.11, python3.12 for specific version
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+```
+
+### requirements.in
+
+We'll use `pip-compile` from `pip-tools` to manage dependencies. This approach has several advantages:
+
+1. **Simple dependency specification**: List only your direct dependencies without worrying about version pins
+2. **Clear dependency tree**: The generated `requirements.txt` shows which packages are your direct dependencies and which are transitive (dependencies of dependencies)
+3. **Reproducible builds**: All versions are pinned in `requirements.txt` for consistent installations
+4. **Easy updates**: Run `pip-compile` again to update all packages to their latest compatible versions
+
+Create a `requirements.in` file with our core dependencies (without version pins):
+
+```txt
+fastapi
+uvicorn[standard]
+pydantic
+```
+
+### Install pip-tools and compile dependencies
+
+```bash
+pip install pip-tools
+pip-compile requirements.in
 pip install -r requirements.txt
 ```
+
+This generates a `requirements.txt` with all pinned dependencies. Notice how the generated file clearly shows which packages are your direct dependencies (marked with `# via -r requirements.in`) and which are transitive dependencies (marked with `# via <package-name>`).
+
+Also notice that `pip-compile` doesn't add itself or `pip-tools` to the `requirements.txt` file, since it's only required for development, not for running the application
 
 ### models.py
 
@@ -106,12 +126,12 @@ app.add_middleware(
 todos: dict[int, Todo] = {}
 next_id = 1
 
-@app.get("/todos", response_model=list[Todo])
+@app.get("/todos", response_model=list[Todo], operation_id="listTodos")
 def list_todos():
     """Get all todos"""
     return list(todos.values())
 
-@app.post("/todos", response_model=Todo)
+@app.post("/todos", response_model=Todo, operation_id="createTodo")
 def create_todo(todo_data: TodoCreate):
     """Create a new todo"""
     global next_id
@@ -126,14 +146,14 @@ def create_todo(todo_data: TodoCreate):
 
     return todo
 
-@app.get("/todos/{todo_id}", response_model=Todo)
+@app.get("/todos/{todo_id}", response_model=Todo, operation_id="getTodo")
 def get_todo(todo_id: int):
     """Get a specific todo"""
     if todo_id not in todos:
         raise HTTPException(status_code=404, detail="Todo not found")
     return todos[todo_id]
 
-@app.put("/todos/{todo_id}", response_model=Todo)
+@app.put("/todos/{todo_id}", response_model=Todo, operation_id="updateTodo")
 def update_todo(todo_id: int, todo_data: TodoUpdate):
     """Update a todo"""
     if todo_id not in todos:
@@ -148,7 +168,7 @@ def update_todo(todo_id: int, todo_data: TodoUpdate):
 
     return todo
 
-@app.delete("/todos/{todo_id}", status_code=204)
+@app.delete("/todos/{todo_id}", status_code=204, operation_id="deleteTodo")
 def delete_todo(todo_id: int):
     """Delete a todo"""
     if todo_id not in todos:
@@ -156,6 +176,8 @@ def delete_todo(todo_id: int):
 
     del todos[todo_id]
 ```
+
+**Important**: Notice the `operation_id` parameter in each route decorator. This tells FastAPI to use clean function names like `listTodos` and `createTodo` in the OpenAPI spec, instead of auto-generated names like `list_todos_todos_get`. When Orval generates the TypeScript client, it will use these operation IDs as function names, giving us a clean API.
 
 ### Start the backend
 
@@ -165,47 +187,63 @@ uvicorn main:app --reload
 
 Your API is now running at `http://localhost:8000`. You can check the auto-generated API docs at `http://localhost:8000/docs` 🎉
 
+### Test the API
+
+Let's test our API endpoints with curl:
+
+```bash
+# List all todos (empty at first)
+curl http://localhost:8000/todos
+
+# Create a new todo
+curl -X POST http://localhost:8000/todos \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Learn FastAPI", "completed": false}'
+
+# List all todos (should show the one we just created)
+curl http://localhost:8000/todos
+
+# Get a specific todo (ID 1)
+curl http://localhost:8000/todos/1
+
+# Update a todo
+curl -X PUT http://localhost:8000/todos/1 \
+  -H "Content-Type: application/json" \
+  -d '{"completed": true}'
+
+# Delete a todo
+curl -X DELETE http://localhost:8000/todos/1
+```
+
+You should see the API responding correctly with JSON data. The OpenAPI spec is also available at `http://localhost:8000/openapi.json` - this is what we'll use to generate our TypeScript client!
+
 ## Frontend: SvelteKit SPA
 
 Now let's build the frontend. Create a new SvelteKit project:
 
 ```bash
-npm create svelte@latest frontend
-# Choose:
-# - Skeleton project
-# - TypeScript
-# - Add Prettier, ESLint if you want
+npx sv create frontend
 ```
+
+Select the following options:
+- **Template**: SvelteKit minimal
+- **Type checking**: Yes, using TypeScript syntax
+- **Add-ons**: prettier
+- **Package manager**: npm
 
 ### Configure as SPA
 
-Install the static adapter:
+The project already comes with `@sveltejs/adapter-auto` which automatically detects your deployment environment. We just need to configure it as a SPA.
 
-```bash
-cd frontend
-npm install -D @sveltejs/adapter-static
-```
-
-Update `svelte.config.js`:
-
-```javascript
-import adapter from '@sveltejs/adapter-static';
-
-export default {
-    kit: {
-        adapter: adapter({
-            fallback: 'index.html'  // SPA mode
-        })
-    }
-};
-```
-
-Create `src/routes/+layout.ts` to disable SSR:
+Create `src/routes/+layout.ts` to configure SPA mode:
 
 ```typescript
-export const ssr = false;
-export const prerender = true;
+export const csr = true;        // Enable client-side rendering
+export const ssr = false;       // Disable server-side rendering
+export const prerender = false; // Disable prerendering
 ```
+
+This configuration makes it a true Single Page Application - all rendering happens in the browser
 
 ### Install Dependencies
 
@@ -220,40 +258,30 @@ This is the magic part! Create `orval.config.cjs`:
 
 ```javascript
 module.exports = {
-    api: {
-        input: 'http://localhost:8000/openapi.json',
+    default: {
+        input: {
+            target: 'http://localhost:8000/openapi.json'  // Where to fetch the OpenAPI spec
+        },
         output: {
-            target: './src/lib/api/gen/endpoints.ts',
-            client: 'axios',
-            mode: 'single',
-            override: {
-                mutator: {
-                    path: './src/lib/api/axios.js',
-                    name: 'axiosInstance'
-                }
-            }
+            target: './src/lib/api/gen',                   // Output directory for generated code
+            schemas: './src/lib/api/gen/model',            // Separate directory for TypeScript types
+            client: 'axios',                               // Use axios for HTTP requests
+            mode: 'split',                                 // Generate separate files per endpoint
+            clean: true,                                   // Clean output directory before generating
+            baseUrl: 'http://localhost:8000'               // Base URL for API requests
         }
     }
 };
 ```
 
-Create the axios instance at `src/lib/api/axios.js`:
+For more configuration options, check out the [Orval documentation](https://orval.dev/).
 
-```javascript
-import Axios from 'axios';
-
-export const axiosInstance = Axios.create({
-    baseURL: 'http://localhost:8000'
-});
-```
-
-Add a script to `package.json`:
+Add a `generate` script to `package.json`:
 
 ```json
 {
     "scripts": {
-        "dev": "vite dev",
-        "build": "vite build",
+        ...
         "generate": "npx orval --config orval.config.cjs"
     }
 }
@@ -267,7 +295,18 @@ With your backend running, generate the API client:
 npm run generate
 ```
 
-This creates `src/lib/api/gen/endpoints.ts` with fully typed functions for all your API endpoints!
+Output should look like this:
+
+```bash
+> frontend@0.0.1 generate
+> npx orval --config orval.config.cjs
+
+🍻 Start orval v7.11.2 - A swagger client generator for typescript
+default: Cleaning output folder
+🎉 default - Your OpenAPI spec has been converted into ready to use orval!
+```
+
+This creates `src/lib/api/gen/` directory with fully typed functions for all your API endpoints.
 
 ### Build the UI
 
@@ -276,13 +315,10 @@ Create `src/routes/+page.svelte`:
 ```svelte
 <script lang="ts">
     import { onMount } from 'svelte';
-    import {
-        listTodos,
-        createTodo,
-        updateTodo,
-        deleteTodo
-    } from '$lib/api/gen/endpoints';
-    import type { Todo } from '$lib/api/gen/endpoints';
+    import { getFastAPI } from '$lib/api/gen/fastAPI';
+    import type { Todo } from '$lib/api/gen/model';
+
+    const api = getFastAPI();
 
     let todos = $state<Todo[]>([]);
     let newTodoTitle = $state('');
@@ -291,7 +327,7 @@ Create `src/routes/+page.svelte`:
     async function loadTodos() {
         loading = true;
         try {
-            const response = await listTodos();
+            const response = await api.listTodos();
             todos = response.data;
         } catch (error) {
             console.error('Failed to load todos:', error);
@@ -304,7 +340,7 @@ Create `src/routes/+page.svelte`:
         if (!newTodoTitle.trim()) return;
 
         try {
-            const response = await createTodo({
+            const response = await api.createTodo({
                 title: newTodoTitle,
                 completed: false
             });
@@ -317,7 +353,7 @@ Create `src/routes/+page.svelte`:
 
     async function toggleTodo(todo: Todo) {
         try {
-            const response = await updateTodo(todo.id, {
+            const response = await api.updateTodo(todo.id, {
                 completed: !todo.completed
             });
             todos = todos.map((t) =>
@@ -330,7 +366,7 @@ Create `src/routes/+page.svelte`:
 
     async function removeTodo(id: number) {
         try {
-            await deleteTodo(id);
+            await api.deleteTodo(id);
             todos = todos.filter((t) => t.id !== id);
         } catch (error) {
             console.error('Failed to delete todo:', error);
@@ -494,7 +530,7 @@ Just regenerate the client:
 npm run generate
 ```
 
-TypeScript will now show errors in your frontend until you update the calls to include the new field. No more "undefined is not a function" errors!
+TypeScript will now show errors in your frontend until you update the calls to include the new field.
 
 ## What We Built
 

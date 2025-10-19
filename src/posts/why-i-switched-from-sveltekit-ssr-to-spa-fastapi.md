@@ -7,6 +7,8 @@ published: true
 readingTime: 10
 ---
 
+# Why I Switched from SvelteKit SSR to a Svelte + FastAPI SPA
+
 Hi, I’m Harun 👋 — a software engineer and founder of [**BrokerGuard.ai**](https://brokerguard.ai), an AI-powered platform that helps insurance brokers automatically audit submissions and detect errors before they reach underwriters.
 
 Over the past few years, I’ve built and scaled multiple SaaS products — and like many developers, I’ve gone through the “what stack should I use?” struggle more times than I’d like to admit.
