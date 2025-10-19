@@ -73,3 +73,6 @@
 - [ ] Record screen walkthrough (no editing, raw) (30-45 mins)
 - [ ] Editing (cut out mistakes, add intro/outro) (15 mins)
 - [ ] Upload to YouTube with SEO-optimized title, description, tags (10 mins)
+
+
+### Blog Post 3: Slowing down is a skill (2-3 hours)
