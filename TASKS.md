@@ -62,10 +62,19 @@
 - [ ] Decide on the blog post outline and structure (5 mins)
 - [ ] Write the blog post (60-90 mins)
 - [ ] Create example repo on GitHub (15 mins)
-- [ ] Research keywords for target audience for blog post 1 (1o mins)
+- [ ] Research keywords for target audience for blog post 1 (1o mins
+  - Svelte FastAPI integration
+  - Svelte FastAPI Orval tutorial
+  - generate TypeScript API client with Orval
+  - FastAPI OpenAPI client Svelte
+  - Svelte SPA with FastAPI backend
+  
+
+Orval TypeScript client example)
 - [ ] Write the frontmatter (title, description, keywords) (10 mins)
 - [ ] Add internal links to related posts (5 mins)
 - [ ] Find 3-5 relevant Reddit/StackOverflow threads to link to (10 mins)
+
 - [ ] Create accounts with turtledev.io email on Reddit, StackOverflow, Dev.to (10 mins)
 - [ ] Share blog post on these platforms with thoughtful comments (15 mins)
 

@@ -103,8 +103,10 @@ No more writing fetch wrappers manually — your SPA gets typed functions for ev
 
 In the coming weeks, I’ll be diving deeper into:
 
-* How to setup Svelte + FastAPI from scratch.
+* [How to Build a SvelteKit SPA with FastAPI Backend](/blog/how-to-build-sveltekit-spa-with-fastapi-backend)
 * Session-based authentication with secure cookies.
 * Handling authentication and protected routes in a SvelteKit SPA.
 
-Each topic will be part of a growing tutorial series around **[FastSvelte](https://fastsvelte.dev/)**, my open-source SaaS starter kit.
+If you want to see a production-ready SAAS development kit with authentication, multi-tenancy, and Stripe integration, check out [FastSvelte](https://fastsvelte.dev/).
+
+Smooth coding!

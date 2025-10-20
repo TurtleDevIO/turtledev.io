@@ -1,26 +1,19 @@
 ---
-title: "Svelte SPA and FastAPI Integration Tutorial"
-description: "Learn how to build a simple todo app with Svelte SPA frontend and FastAPI backend, with auto-generated TypeScript API clients for full type safety."
+title: "How to Build a SvelteKit SPA with FastAPI Backend"
+description: "Learn how to connect a Svelte SPA with a FastAPI backend using Orval to auto-generate TypeScript API clients from OpenAPI specs for full type safety and clean architecture."
 date: "2025-10-15"
-categories: ["svelte", "fastapi", "tutorial", "web-development", "typescript", "python"]
+categories: ["svelte", "fastapi", "orval", "tutorial", "web-development", "typescript", "python"]
 published: true
-readingTime: 8
+readingTime: 25
 ---
 
-# Svelte SPA and FastAPI Integration Tutorial
+# How to Build a SvelteKit SPA with FastAPI Backend
 
-Hey there! 👋 In my [previous post](/blog/why-i-switched-from-sveltekit-ssr-to-spa-fastapi), I talked about why I moved from SvelteKit SSR to a Svelte SPA + FastAPI architecture. Today, I want to show you exactly how to build one.
+Hey there! 👋 In my [previous post](/blog/why-i-switched-from-sveltekit-ssr-to-spa-fastapi), I talked about why I moved from SvelteKit SSR to a Svelte SPA + FastAPI architecture. Today, I want to show you my setup with a simple project.
 
-We'll build a simple **todo list app** to demonstrate how the frontend and backend communicate, and how to keep everything type-safe with auto-generated API clients. No authentication, no complex features—just the essentials.
+We'll build a simple **todo list app** to demonstrate how the frontend and backend communicate, and how to write less and type-safe code by using **Orval** to auto-generate TypeScript API clients from FastAPI's OpenAPI specs. 
 
-## Why This Stack?
-
-Before we dive in, here's why this architecture is great:
-
-- **Type Safety**: Changes in backend automatically flow to frontend via generated TypeScript types
-- **Clean Separation**: Backend handles data, frontend handles UI
-- **Independent Deployment**: Deploy frontend and backend separately
-- **Best Tools**: Use Python for backend logic, TypeScript/Svelte for UI
+> **[Complete source code available on GitHub](https://github.com/TurtleDevIO/svelte-spa-fastapi-tutorial)**
 
 ## Project Structure
 
@@ -233,7 +226,7 @@ Select the following options:
 
 ### Configure as SPA
 
-The project already comes with `@sveltejs/adapter-auto` which automatically detects your deployment environment. We just need to configure it as a SPA.
+The project already comes with `@sveltejs/adapter-auto` which automatically detects your deployment environment. We just need to configure it as a SPA. We can also use static adapter with a fallback page as explained [here](https://svelte.dev/docs/kit/single-page-apps). Some hosting providers require this. 
 
 Create `src/routes/+layout.ts` to configure SPA mode:
 
@@ -504,18 +497,11 @@ Create `src/routes/+page.svelte`:
 npm run dev
 ```
 
-Your app is now running at `http://localhost:5173`! 🎉
+Your app is now running at `http://localhost:5173`! 
 
-## How It All Works Together
+## Updating the API
 
-Here's the beautiful part:
-
-1. **Backend defines the API**: FastAPI with Pydantic models
-2. **OpenAPI spec is auto-generated**: FastAPI creates this at `/openapi.json`
-3. **Orval generates TypeScript client**: Run `npm run generate` to create typed functions
-4. **Frontend uses typed functions**: Full autocomplete and type checking
-
-When you change a backend model:
+When you make a change in the backend API like adding a new endpoint or changing a model:
 
 ```python
 class TodoCreate(BaseModel):
@@ -541,15 +527,8 @@ In this tutorial, we:
 ✅ Auto-generated TypeScript API client from OpenAPI spec
 ✅ Built a fully functional todo app with type safety
 
-## Next Steps
+**Get the complete code**: [GitHub Repository](https://github.com/TurtleDevIO/svelte-spa-fastapi-tutorial)
 
-Want to take this further? Here are some ideas:
+If you want to see a production-ready version with authentication, multi-tenancy, and Stripe integration, check out [FastSvelte](https://fastsvelte.dev/).
 
-- **Add a database**: Replace in-memory storage with PostgreSQL using SQLAlchemy
-- **Add validation**: Use Pydantic validators for better error messages
-- **Add filtering**: Filter todos by completed/pending status
-- **Deploy it**: Host backend on Azure Container Apps, frontend on Azure Static Web Apps
-
-If you want to see a production-ready version with authentication, multi-tenancy, and Stripe integration, check out [FastSvelte](https://fastsvelte.dev/)—my open-source SaaS starter kit that uses this exact architecture!
-
-Happy coding! 🚀
+Smooth coding!
