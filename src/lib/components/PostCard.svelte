@@ -17,9 +17,9 @@
 			{/if}
 			{#if post.categories && post.categories.length > 0}
 				<span>·</span>
-				<div class="flex gap-2">
+				<div class="flex gap-2 flex-wrap">
 					{#each post.categories as category}
-						<span>#{category}</span>
+						<span class="badge badge-outline badge-sm">{category}</span>
 					{/each}
 				</div>
 			{/if}

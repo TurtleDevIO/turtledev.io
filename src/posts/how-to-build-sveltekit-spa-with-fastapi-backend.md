@@ -2,7 +2,7 @@
 title: "How to Build a SvelteKit SPA with FastAPI Backend"
 description: "Learn how to connect a Svelte SPA with a FastAPI backend using Orval to auto-generate TypeScript API clients from OpenAPI specs for full type safety and clean architecture."
 date: "2025-10-15"
-categories: ["svelte", "fastapi", "orval", "tutorial", "web-development", "typescript", "python", "spa"]
+categories: ["svelte", "fastapi", "orval", "spa"]
 published: true
 readingTime: 25
 ---
