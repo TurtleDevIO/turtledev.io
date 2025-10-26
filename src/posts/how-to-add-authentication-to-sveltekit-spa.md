@@ -9,7 +9,7 @@ readingTime: 30
 
 # How to Add Authentication to a SvelteKit SPA
 
-Building on our [previous tutorial](/posts/how-to-build-sveltekit-spa-with-fastapi-backend) where we created a SvelteKit SPA with a FastAPI backend, let's add authentication to our application.
+Building on our [previous tutorial](/blog/how-to-build-sveltekit-spa-with-fastapi-backend) where we created a SvelteKit SPA with a FastAPI backend, let's add authentication to our application.
 
 > **Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready SvelteKit boilerplate with authentication, payments, and more built-in.
 
@@ -26,7 +26,7 @@ This tutorial demonstrates a minimal authentication implementation for learning 
 
 ## Prerequisites
 
-- Completed the [SvelteKit SPA with FastAPI tutorial](/posts/how-to-build-sveltekit-spa-with-fastapi-backend) or have a similar setup
+- Completed the [SvelteKit SPA with FastAPI tutorial](/blog/how-to-build-sveltekit-spa-with-fastapi-backend) or have a similar setup
 - Basic understanding of SvelteKit and FastAPI
 - Familiarity with Svelte 5 runes (`$state`, `$effect`)
 
