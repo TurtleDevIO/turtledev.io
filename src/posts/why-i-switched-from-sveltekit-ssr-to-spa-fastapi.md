@@ -2,7 +2,7 @@
 title: "Why I Switched from SvelteKit SSR to SPA + FastAPI"
 description: "How separating frontend and backend brought instant navigation, cleaner architecture, independent deployments, and happier development."
 date: "2025-10-06"
-categories: ["svelte", "fastapi", "saas", "web-development", "sveltekit"]
+categories: ["svelte", "fastapi", "saas", "web-development", "sveltekit", "spa", "python"]
 published: true
 readingTime: 10
 ---
