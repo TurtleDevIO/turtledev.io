@@ -2,7 +2,7 @@
 title: "How to Add Authentication to a SvelteKit SPA"
 description: "Learn how to implement authentication in a SvelteKit SPA with HTTP-only cookies, reactive auth state, and protected routes using a clean, straightforward approach."
 date: "2025-10-22"
-categories: ["svelte", "authentication", "security", "tutorial", "web-development", "typescript", "spa"]
+categories: ["svelte", "authentication", "spa", "fastapi"]
 published: true
 readingTime: 30
 ---
