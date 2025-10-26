@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { siteConfig } from '$lib/config';
+	import Giscus from '$lib/components/Giscus.svelte';
 
 	let { data } = $props();
 </script>
@@ -75,7 +76,10 @@
 		{@render data.content()}
 	</div>
 
-	<footer class="pt-8 border-t border-base-300">
+	<!-- Comments Section -->
+	<Giscus />
+
+	<footer class="pt-8 border-t border-base-300 mt-12">
 		<a href="/blog" class="text-primary hover:underline">← Back to blog</a>
 	</footer>
 </article>
