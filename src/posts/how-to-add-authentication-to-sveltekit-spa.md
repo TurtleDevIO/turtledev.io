@@ -96,13 +96,13 @@ Browser                    SvelteKit Frontend              FastAPI Backend
    │                              │                              │
    │  6. GET /todos               │                              │
    │     Cookie: session=xxx      │                              │
-   │  ──────────────────────────────────────────────────────────> │
+   │  ─────────────────────────────────────────────────────────> │
    │                              │                              │
    │                              │                              │  7. Validate
    │                              │                              │     session
    │                              │                              │
    │  8. Todo list data           │                              │
-   │  <────────────────────────────────────────────────────────── │
+   │  <───────────────────────────────────────────────────────── │
    │                              │                              │
 ```
 
@@ -426,3 +426,5 @@ The complete code is available in the [GitHub repository](https://github.com/Tur
 ### Next Steps
 
 This covers the authentication fundamentals, but production apps need features like password reset, email verification, OAuth, and role-based access control. If you need a production-ready solution with all of this built-in, check out [FastSvelte](https://fastsvelte.dev).
+
+Smooth coding!

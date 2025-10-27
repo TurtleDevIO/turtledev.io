@@ -37,3 +37,5 @@ Pretty cool, right?
 I believe in learning by teaching. Writing about what I learn helps me solidify my understanding and hopefully helps others along the way.
 
 Stay tuned for more content!
+
+Smooth coding!
