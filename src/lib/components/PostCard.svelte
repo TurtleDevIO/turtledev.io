@@ -1,20 +1,12 @@
 <script lang="ts">
 	import type { Post } from '$lib/types';
+	import { formatDate } from '$lib/utils/date';
 	let { post }: { post: Post } = $props();
-
-	const formatDate = (dateString: string) => {
-		const date = new Date(dateString);
-		return date.toLocaleDateString('en-US', {
-			month: 'long',
-			day: 'numeric',
-			year: 'numeric'
-		});
-	};
 </script>
 
 <article class="rounded-lg p-6 mb-4 bg-base-200">
 	<a href="/blog/{post.slug}" class="group block">
-		<h2 class="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+		<h2 class="text-[24px] font-semibold mb-3 group-hover:text-primary transition-colors">
 			{post.title}
 		</h2>
 		<p class="text-base-content/70 leading-relaxed mb-3">{post.description}</p>

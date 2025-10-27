@@ -7,8 +7,6 @@ published: true
 readingTime: 2
 ---
 
-# Hello World!
-
 Welcome to my blog! I'm excited to start sharing my journey in software development with you.
 
 ## What to Expect

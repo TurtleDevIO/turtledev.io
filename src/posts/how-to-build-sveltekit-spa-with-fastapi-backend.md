@@ -7,8 +7,6 @@ published: true
 readingTime: 25
 ---
 
-# How to Build a SvelteKit SPA with FastAPI Backend
-
 Hey there! 👋 In my [previous post](/blog/why-i-switched-from-sveltekit-ssr-to-spa-fastapi), I talked about why I moved from SvelteKit SSR to a Svelte SPA + FastAPI architecture. Today, I want to show you my setup with a simple project.
 
 > **Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready SvelteKit boilerplate with authentication, payments, and more built-in.

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { siteConfig } from '$lib/config';
 	import Giscus from '$lib/components/Giscus.svelte';
+	import { formatDate } from '$lib/utils/date';
 
 	let { data } = $props();
 </script>
@@ -59,10 +60,33 @@
 
 <article class="container mx-auto px-4 py-12 max-w-3xl">
 	<header class="mb-8 pb-6 border-b border-base-300">
-		<div class="flex items-center gap-3 text-sm text-base-content/60">
-			<time datetime={data.meta.date}>{data.meta.date}</time>
-			{#if data.meta.categories.length > 0}
-				<span>•</span>
+		<h1 class="text-[40px] font-bold mb-4">{data.meta.title}</h1>
+		<div class="flex items-center gap-3 text-sm text-base-content/60 flex-wrap">
+			<div class="flex items-center gap-3 whitespace-nowrap">
+				<time datetime={data.meta.date}>{formatDate(data.meta.date)}</time>
+				{#if data.meta.readingTime}
+					<span>·</span>
+					<span class="flex items-center gap-1">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-4 w-4"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+							/>
+						</svg>
+						{data.meta.readingTime} min
+					</span>
+				{/if}
+			</div>
+			{#if data.meta.categories && data.meta.categories.length > 0}
+				<span>·</span>
 				<div class="flex gap-2 flex-wrap">
 					{#each data.meta.categories as category}
 						<span class="badge badge-outline badge-sm">{category}</span>
