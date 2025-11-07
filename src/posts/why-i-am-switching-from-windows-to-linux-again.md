@@ -32,6 +32,6 @@ When it comes to choosing a distro, I’m being pragmatic. In the past, I’ve u
 
 So, I’ve narrowed my choices to Ubuntu and Fedora. Arch is tempting, but I’m not in the mood for that level of adventure right now. My plan is to boot up both Ubuntu and Fedora as live OSes on my Lenovo IdeaPad and test them side by side before committing.
 
-In my [next post](/posts/how-i-chose-my-linux-distro-fedora-vs-ubuntu), I'll share the results of my side-by-side test between Ubuntu and Fedora — what worked out of the box, what didn't, and which one I eventually chose. And I'll keep blogging about my Linux journey as I set up my development environment, tackle challenges, and discover new tools along the way.
+In my [next post](/blog/how-i-chose-my-linux-distro-fedora-vs-ubuntu), I'll share the results of my side-by-side test between Ubuntu and Fedora — what worked out of the box, what didn't, and which one I eventually chose. And I'll keep blogging about my Linux journey as I set up my development environment, tackle challenges, and discover new tools along the way.
 
 Smooth coding!
