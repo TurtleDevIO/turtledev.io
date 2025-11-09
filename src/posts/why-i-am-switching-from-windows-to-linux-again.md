@@ -2,7 +2,7 @@
 title: "Why I'm Switching to Linux (Again)"
 description: "After years on Windows and several failed attempts to switch, I'm now starting a slow transition to Linux — with the goal of building an environment I fully control and genuinely enjoy working in."
 date: "2025-11-03"
-categories: ["linux", "windows", "developer-tools", "productivity", "turtledev"]
+categories: ["linux", "windows", "wsl"]
 published: true
 readingTime: 8
 ---
@@ -34,4 +34,4 @@ So, I’ve narrowed my choices to Ubuntu and Fedora. Arch is tempting, but I’m
 
 In my [next post](/blog/how-i-chose-my-linux-distro-fedora-vs-ubuntu), I'll share the results of my side-by-side test between Ubuntu and Fedora — what worked out of the box, what didn't, and which one I eventually chose. And I'll keep blogging about my Linux journey as I set up my development environment, tackle challenges, and discover new tools along the way.
 
-Smooth coding!
+Smooth computing!

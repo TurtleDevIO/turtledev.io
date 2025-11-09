@@ -2,7 +2,7 @@
 title: "How I Chose My Linux Distro (Fedora vs Ubuntu)"
 description: "I tested Fedora 42 and Ubuntu 24.04 side by side on a 16″ Lenovo IdeaPad 5 Pro i5 to see which Linux distro works better out of the box."
 date: "2025-11-04"
-categories: ["linux", "ubuntu", "fedora", "developer-tools", "turtledev"]
+categories: ["linux", "ubuntu", "fedora", "gnome"]
 published: true
 readingTime: 15
 ---
@@ -10,7 +10,7 @@ readingTime: 15
 ![Lenovo IdeaPad 5 Pro - the laptop used for testing Linux distros](/images/posts/lenovo-ideapad.jpg)
 *Lenovo IdeaPad 5 Pro 16″ - my test machine for comparing Fedora and Ubuntu*
 
-In my [previous post](/blog/why-i-am-switching-from-windows-to-linux-again), I explained why I'm switching to Linux and mentioned I'd be testing Ubuntu and Fedora side by side as live USBs before committing to an install. Well, I did exactly that — booted both distros on my [Lenovo IdeaPad 5 Pro Gen 7](https://www.lenovo.com/ca/en/p/laptops/ideapad/ideapad-500/ideapad-5i-pro-gen-7-16-inch-intel/len101i0050?displayrulevalidation=false) and put them through their paces.
+In my [previous post](/blog/why-i-am-switching-from-windows-to-linux-again), I explained why I'm switching to Linux and mentioned I'd be testing Ubuntu and Fedora side by side as live USBs before committing to an install. Well, I did exactly that — booted both distros on my [Lenovo IdeaPad 5 Pro Gen 7](https://www.lenovo.com/ca/en/p/laptops/ideapad/ideapad-500/ideapad-5i-pro-gen-7-16-inch-intel/len101i0050?displayrulevalidation=false) and tested everything I could think of.
 
 This isn't a benchmark test or a feature list comparison. This is what actually worked (and what didn't) when I tested both distros on my laptop.
 
