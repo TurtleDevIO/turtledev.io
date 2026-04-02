@@ -126,4 +126,4 @@ After all of this, the terminal is in a good shape. One more thing I'd recommend
 
 If you're on Fedora (or any Linux distro) and haven't done this yet, it's worth the half hour.
 
-Smooth computing!
+Smooth typing!
