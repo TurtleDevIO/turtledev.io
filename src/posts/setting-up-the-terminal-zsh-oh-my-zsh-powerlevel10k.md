@@ -7,6 +7,9 @@ published: true
 readingTime: 7
 ---
 
+![zsh terminal with Oh My Zsh, Powerlevel10k, and neofetch on Fedora](/images/posts/zsh-powerlevel10k-terminal.png)
+*zsh with Powerlevel10k and Oh My Zsh running on Fedora*
+
 I had this setup running on WSL for many years and wanted the same on Fedora. Since I'm still using WSL on my other machine, I wanted the exact same setup on both to not confuse my muscle memory 😄. Here are the steps I followed, in order.
 
 ---
@@ -118,7 +121,7 @@ Then reload:
 source ~/.zshrc
 ```
 
-The Powerlevel10k configuration wizard will launch automatically. It asks a series of visual questions — does this icon look right, do you prefer this style or that one — and builds your prompt config based on your answers. The whole thing takes about two minutes and the result is a prompt that actually shows you useful information at a glance.
+The Powerlevel10k configuration wizard will launch automatically. It asks a series of visual questions — does this icon look right, do you prefer this style or that one — and builds your prompt config based on your answers. The whole thing takes about two minutes and the result is a prompt that actually shows you useful information at a glance. 
 
 ---
 

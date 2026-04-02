@@ -41,3 +41,19 @@ html {
 .prose pre code {
 	@apply bg-transparent p-0;
 }
+
+.prose p:has(img) {
+	text-align: center;
+}
+
+.prose p:has(img) img {
+	margin-bottom: 0;
+	display: inline;
+}
+
+.prose p:has(img) em {
+	display: block;
+	margin-top: 0.25rem;
+	font-size: 0.875rem;
+	@apply text-base-content/60;
+}
