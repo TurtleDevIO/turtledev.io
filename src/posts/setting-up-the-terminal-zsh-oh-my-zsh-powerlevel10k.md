@@ -12,8 +12,6 @@ readingTime: 7
 
 I had this setup running on WSL for many years and wanted the same on Fedora. Since I'm still using WSL on my other machine, I wanted the exact same setup on both to not confuse my muscle memory 😄. Here are the steps I followed, in order.
 
----
-
 ## Step 1: Install zsh
 
 Fedora ships with bash, so the first step is installing zsh:
@@ -28,8 +26,6 @@ Verify it installed correctly:
 zsh --version
 # zsh 5.9 (x86_64-redhat-linux-gnu)
 ```
-
----
 
 ## Step 2: Install Oh My Zsh
 
@@ -47,8 +43,6 @@ A few things happen automatically when this runs:
 
 After the install finishes, close and reopen your terminal and you'll already be in zsh.
 
----
-
 ## Step 3: Add the Essential Plugins
 
 There are two plugins that I consider non-negotiable. Once you try them, you'll wonder how you managed without them.
@@ -62,7 +56,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions \
 
 **zsh-syntax-highlighting** — colors your command as you type it. Valid commands turn green, unrecognized commands turn red. Typos become immediately visible before you even hit enter.
 
-Worth noting: the GitHub repo now shows a prominent warning that the project has very limited support and no new features are in the works. That sounds alarming, but [the maintainer explained on Reddit](https://www.reddit.com/r/zsh/comments/1f88498/comment/llfj1fq/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) that since no new features are being added, no new bugs will be introduced either — the plugin does what it does and does it well. There are also still occasional commits coming in. Good enough for me.
 
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting \
@@ -81,11 +74,16 @@ Then reload your config:
 source ~/.zshrc
 ```
 
----
-
 ## Step 4: Powerlevel10k
 
 The default Oh My Zsh themes are fine, but [Powerlevel10k](https://github.com/romkatv/powerlevel10k) is in a different league. It's fast, highly configurable, and shows useful context right in your prompt — current directory, git branch and status, error codes, and more. It has a built-in configuration wizard that walks you through everything interactively.
+
+<div class="card bg-base-200 not-prose my-4">
+  <div class="card-body py-4">
+    <p>The GitHub repo now shows a warning that the project has very limited support and no new features are in the works. That sounds alarming, but <a href="https://www.reddit.com/r/zsh/comments/1f88498/comment/llfj1fq/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button" class="link">the maintainer explained on Reddit</a> that since no new features are being added, no new bugs will be introduced either — the plugin does what it does and does it well. There are also still occasional commits coming in. Good enough for me.</p>
+  </div>
+</div>
+
 
 ### Install the Font First
 
@@ -122,8 +120,6 @@ source ~/.zshrc
 ```
 
 The Powerlevel10k configuration wizard will launch automatically. It asks a series of visual questions — does this icon look right, do you prefer this style or that one — and builds your prompt config based on your answers. The whole thing takes about two minutes and the result is a prompt that actually shows you useful information at a glance. 
-
----
 
 After all of this, the terminal is in a good shape. One more thing I'd recommend — try the Darcula theme on GNOME Terminal. It pairs really well with Powerlevel10k and is easy on the eyes for long sessions. And if the font feels too small after setting MesloLGS NF, just bump it up a couple of sizes in **Preferences → Text → Custom font**. Don't suffer through a small font.
 
