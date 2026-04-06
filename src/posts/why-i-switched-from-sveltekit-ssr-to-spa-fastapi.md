@@ -7,6 +7,10 @@ published: true
 readingTime: 10
 ---
 
+<script>
+import Callout from '$lib/components/Callout.svelte';
+</script>
+
 Hi, I'm Harun 👋 — a software engineer and founder of [**BrokerGuard.ai**](https://brokerguard.ai), an AI-powered platform that helps insurance brokers automatically audit submissions and detect errors before they reach underwriters.
 
 Over the past few years, I’ve built and scaled multiple SaaS products — and like many developers, I’ve gone through the “what stack should I use?” struggle more times than I’d like to admit.
@@ -14,8 +18,13 @@ Over the past few years, I’ve built and scaled multiple SaaS products — and 
 When I first started building my SaaS, I went with what everyone seemed to be using — **SvelteKit with SSR** deployed on Vercel.
 If I were a React person, I probably would’ve gone with **Next.js**, and my experience would have been pretty similar.
 
-On paper, it sounded great: one stack, one deployment, everything in TypeScript.
-But in reality? It didn’t take long before the cracks showed up.
+<Callout type="promo">
+
+**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready FastAPI + SvelteKit starter with authentication, payments, and more built-in.
+
+</Callout>
+
+On paper, it sounded great: one stack, one deployment, everything in TypeScript. But in reality? It didn't take long before the cracks showed up.
 
 * The app felt slow on first load — mostly due to **cold starts** on Vercel’s serverless functions.
 * Every page render was triggering backend logic that didn’t really belong in the frontend.
@@ -96,6 +105,11 @@ With FastAPI’s OpenAPI spec, you can generate API client code automatically wi
 No more writing fetch wrappers manually — your SPA gets typed functions for every endpoint.
 (I’ll cover this in detail in an upcoming post 😉)
 
+<Callout type="promo">
+
+**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready FastAPI + SvelteKit starter with authentication, payments, and more built-in.
+
+</Callout>
 
 ## What’s Next
 
@@ -104,7 +118,5 @@ In the coming weeks, I’ll be diving deeper into:
 * [How to Build a SvelteKit SPA with FastAPI Backend](/blog/how-to-build-sveltekit-spa-with-fastapi-backend)
 * Session-based authentication with secure cookies.
 * Handling authentication and protected routes in a SvelteKit SPA.
-
-If you want to see a production-ready SAAS development kit with authentication, multi-tenancy, and Stripe integration, check out [FastSvelte](https://fastsvelte.dev/).
 
 Smooth coding!
