@@ -7,13 +7,20 @@ published: true
 readingTime: 25
 ---
 
+<script>
+import Callout from '$lib/components/Callout.svelte';
+</script>
+
 Hey there! 👋 In my [previous post](/blog/why-i-switched-from-sveltekit-ssr-to-spa-fastapi), I talked about why I moved from SvelteKit SSR to a Svelte SPA + FastAPI architecture. Today, I want to show you my setup with a simple project.
 
-> **Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready SvelteKit boilerplate with authentication, payments, and more built-in.
+We'll build a simple **todo list app** to demonstrate how the frontend and backend communicate, and how to write less and type-safe code by using **Orval** to auto-generate TypeScript API clients from FastAPI's OpenAPI specs.
 
-We'll build a simple **todo list app** to demonstrate how the frontend and backend communicate, and how to write less and type-safe code by using **Orval** to auto-generate TypeScript API clients from FastAPI's OpenAPI specs. 
+<Callout type="promo">
 
-> **[Complete source code available on GitHub](https://github.com/TurtleDevIO/svelte-spa-fastapi-tutorial)**
+**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready FastAPI + SvelteKit starter with authentication, payments, and more built-in.
+
+</Callout>
+
 
 ## Project Structure
 
@@ -518,16 +525,25 @@ npm run generate
 
 TypeScript will now show errors in your frontend until you update the calls to include the new field.
 
+<Callout type="promo">
+
+**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready FastAPI + SvelteKit starter with authentication, payments, and more built-in.
+
+</Callout>
+
 ## What We Built
 
 In this tutorial, we:
 
-✅ Created a FastAPI backend with CRUD endpoints
-✅ Set up a SvelteKit SPA frontend
-✅ Auto-generated TypeScript API client from OpenAPI spec
-✅ Built a fully functional todo app with type safety
+- Created a FastAPI backend with CRUD endpoints
+- Set up a SvelteKit SPA frontend
+- Auto-generated TypeScript API client from OpenAPI spec
+- Built a fully functional todo app with type safety
+
+<Callout type="info">
 
 **Get the complete code**: [GitHub Repository](https://github.com/TurtleDevIO/svelte-spa-fastapi-tutorial)
+</Callout>
 
 If you want to see a production-ready version with authentication, multi-tenancy, and Stripe integration, check out [FastSvelte](https://fastsvelte.dev/).
 

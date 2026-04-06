@@ -7,9 +7,16 @@ published: true
 readingTime: 30
 ---
 
+<script>
+import Callout from '$lib/components/Callout.svelte';
+</script>
+
 Building on our [previous tutorial](/blog/how-to-build-sveltekit-spa-with-fastapi-backend) where we created a SvelteKit SPA with a FastAPI backend, let's add authentication to our application.
 
-> **Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready SvelteKit boilerplate with authentication, payments, and more built-in.
+<Callout type="promo">
+
+**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready FastAPI + SvelteKit starter with authentication, payments, and more built-in.
+</Callout>
 
 This tutorial demonstrates a minimal authentication implementation for learning purposes, covering:
 
@@ -18,9 +25,10 @@ This tutorial demonstrates a minimal authentication implementation for learning 
 - Protected routes with automatic redirects
 - Optimized auth checks with caching
 
-> **Note**: This is a tutorial project for learning concepts. For production applications, use solutions like [FastSvelte](https://fastsvelte.dev), Auth.js, Lucia, or your backend framework's authentication library.
+<Callout type="warning">
 
-> **[Complete source code available on GitHub](https://github.com/TurtleDevIO/sveltekit-spa-authentication)**
+**Note**: This is a tutorial project for learning concepts. For production applications, use solutions like [FastSvelte](https://fastsvelte.dev), Auth.js, Lucia, or your backend framework's authentication library.
+</Callout>
 
 ## Prerequisites
 
@@ -129,11 +137,14 @@ Before we dive into the code, here are the important security concepts we're imp
 
 **Session Validation on Every Request**: Here's a critical principle - never trust the client. Every single protected endpoint validates the session cookie before processing the request. The frontend auth state is just for UX; real security happens on the backend.
 
----
 
 ## Backend Implementation
 
-> **Quick note**: This backend is intentionally minimal - it's just here to demonstrate the SvelteKit SPA authentication flow. We're using in-memory storage, plain-text passwords, and other shortcuts you'd never use in production. The focus of this tutorial is the frontend auth implementation.
+<Callout type="warning">
+
+**Quick note**: This backend is intentionally minimal - it's just here to demonstrate the SvelteKit SPA authentication flow. We're using in-memory storage, plain-text passwords, and other shortcuts you'd never use in production. The focus of this tutorial is the frontend auth implementation.
+
+</Callout>
 
 Our backend does three key things:
 
@@ -235,7 +246,6 @@ app.add_middleware(
 
 That `allow_credentials=True` is essential - without it, the browser won't send or receive cookies in cross-origin requests.
 
----
 
 ## Frontend Implementation
 
@@ -334,9 +344,11 @@ export async function ensureAuthenticated(): Promise<boolean> {
 }
 ```
 
-> **About the 20-second cache**: This is NOT the same as your session expiry time. This is purely a performance optimization to avoid hammering the `/users/me` endpoint. Your actual session might last 30-60 minutes on the backend. Even if you set this cache to something longer, it's fine - as soon as the user makes any API call (fetching todos, creating items, etc.), the backend will validate the session. If it's expired, you'll get a 401 and handle it.
->
-> Here's the thing: imagine you have two protected pages that don't fetch any data from the API. When navigating between them, calling `/users/me` is the only way to verify you're still logged in. But from a security standpoint, even if we skipped this check entirely, it's fine - the user can't access any actual data without the backend validating their session. This check is more about UX (showing the correct UI state, redirecting to login if needed) than security. Real security happens on the backend.
+<Callout type="info">
+
+**About the 20-second cache**: This is NOT the same as your session expiry time. This is purely a performance optimization to avoid hammering the `/users/me` endpoint. Your actual session might last 30-60 minutes on the backend. Backend still validates the session on every call. 
+</Callout>
+
 
 ### Step 4: Protect Routes with a Layout
 
@@ -409,7 +421,10 @@ export async function logout(): Promise<void> {
 
 Even if the API call fails, we clear the local state and redirect. The session might still exist on the backend, but the user can't access protected routes without re-authenticating.
 
----
+<Callout type="promo">
+
+**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready FastAPI + SvelteKit starter with authentication, payments, and more built-in.
+</Callout>
 
 ## Wrapping Up
 
@@ -421,7 +436,10 @@ You now have a working authentication system for your SvelteKit SPA! We covered:
 - Protecting routes with layouts
 - Handling login and logout flows
 
+<Callout type="info">
+
 The complete code is available in the [GitHub repository](https://github.com/TurtleDevIO/sveltekit-spa-authentication).
+</Callout>
 
 ### Next Steps
 

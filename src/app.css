@@ -26,6 +26,11 @@ html {
 	@apply font-bold text-base-content;
 }
 
+.prose h2 {
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+}
+
 .prose a {
 	@apply text-primary no-underline hover:underline;
 }
