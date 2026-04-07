@@ -7,6 +7,11 @@ published: true
 readingTime: 7
 ---
 
+<script>
+import Callout from '$lib/components/Callout.svelte';
+</script>
+
+
 ![zsh terminal with Oh My Zsh, Powerlevel10k, and neofetch on Fedora](/images/posts/zsh-powerlevel10k-terminal.png)
 *zsh with Powerlevel10k and Oh My Zsh running on Fedora*
 
@@ -78,11 +83,12 @@ source ~/.zshrc
 
 The default Oh My Zsh themes are fine, but [Powerlevel10k](https://github.com/romkatv/powerlevel10k) is in a different league. It's fast, highly configurable, and shows useful context right in your prompt — current directory, git branch and status, error codes, and more. It has a built-in configuration wizard that walks you through everything interactively.
 
-<div class="card bg-base-200 not-prose my-4">
-  <div class="card-body py-4">
-    <p>The GitHub repo now shows a warning that the project has very limited support and no new features are in the works. That sounds alarming, but <a href="https://www.reddit.com/r/zsh/comments/1f88498/comment/llfj1fq/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button" class="link">the maintainer explained on Reddit</a> that since no new features are being added, no new bugs will be introduced either — the plugin does what it does and does it well. There are also still occasional commits coming in. Good enough for me.</p>
-  </div>
-</div>
+<Callout type="note">
+
+The GitHub repo now shows a warning that the project has very limited support and no new features are in the works. That sounds alarming, but [the maintainer explained on Reddit](https://www.reddit.com/r/zsh/comments/1f88498/comment/llfj1fq/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) that since no new features are being added, no new bugs will be introduced either — the plugin does what it does and does it well. There are also still occasional commits coming in. Good enough for me.
+</Callout>
+
+
 
 
 ### Install the Font First

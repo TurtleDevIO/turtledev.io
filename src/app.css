@@ -31,6 +31,12 @@ html {
 	margin-bottom: 1rem;
 }
 
+.prose ul li,
+.prose ol li {
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+
 .prose a {
 	@apply text-primary no-underline hover:underline;
 }

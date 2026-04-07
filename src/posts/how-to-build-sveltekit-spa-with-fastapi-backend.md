@@ -540,9 +540,10 @@ In this tutorial, we:
 - Auto-generated TypeScript API client from OpenAPI spec
 - Built a fully functional todo app with type safety
 
-<Callout type="info">
+<Callout type="tip">
 
-**Get the complete code**: [GitHub Repository](https://github.com/TurtleDevIO/svelte-spa-fastapi-tutorial)
+Source code for this tutorial: [GitHub](https://github.com/TurtleDevIO/svelte-spa-fastapi-tutorial)
+
 </Callout>
 
 If you want to see a production-ready version with authentication, multi-tenancy, and Stripe integration, check out [FastSvelte](https://fastsvelte.dev/).

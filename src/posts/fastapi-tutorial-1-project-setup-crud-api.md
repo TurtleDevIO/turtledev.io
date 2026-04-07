@@ -327,7 +327,7 @@ We've completed the initial project setup! In the next tutorial, we'll implement
 
 <Callout type="tip">
 
-You can access the final code for this tutorial on GitHub: [fullstack-fastapi-tutorial/tree/01-backend-setup](https://github.com/TurtleDevIO/fullstack-fastapi-tutorial/tree/01-backend-setup)
+Source code for this tutorial: [GitHub](https://github.com/TurtleDevIO/fullstack-fastapi-tutorial/tree/01-backend-setup)
 
 </Callout>
 

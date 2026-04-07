@@ -27,7 +27,7 @@ This tutorial demonstrates a minimal authentication implementation for learning 
 
 <Callout type="warning">
 
-**Note**: This is a tutorial project for learning concepts. For production applications, use solutions like [FastSvelte](https://fastsvelte.dev), Auth.js, Lucia, or your backend framework's authentication library.
+This is a tutorial project for learning concepts. For production applications, use solutions like [FastSvelte](https://fastsvelte.dev), Auth.js, Lucia, or your backend framework's authentication library.
 </Callout>
 
 ## Prerequisites
@@ -438,7 +438,8 @@ You now have a working authentication system for your SvelteKit SPA! We covered:
 
 <Callout type="info">
 
-The complete code is available in the [GitHub repository](https://github.com/TurtleDevIO/sveltekit-spa-authentication).
+Source code for this tutorial: [GitHub](https://github.com/TurtleDevIO/sveltekit-spa-authentication)
+
 </Callout>
 
 ### Next Steps

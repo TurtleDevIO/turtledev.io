@@ -14,8 +14,6 @@ In my [previous post](/blog/why-i-am-switching-from-windows-to-linux-again), I e
 
 This isn't a benchmark test or a feature list comparison. This is what actually worked (and what didn't) when I tested both distros on my laptop.
 
----
-
 ## Test Setup
 
 Before diving into the results, here's what I was working with:
@@ -32,7 +30,6 @@ Before diving into the results, here's what I was working with:
 
 I kept the firmware settings at their defaults (UEFI, Secure Boot enabled, AHCI for storage, virtualization on). Both distros booted fine without any BIOS tweaks.
 
----
 
 ## System Overview
 
@@ -50,7 +47,6 @@ One thing I noticed right away: Fedora boots directly into Wayland, while Ubuntu
 
 Shutdown times were surprisingly different. Fedora shut down in about 15 seconds, while Ubuntu took around 2 minutes. Something probably went wrong with Ubuntu's shutdown process during the live session, but it's worth noting.
 
----
 
 ## Display & Scaling
 
@@ -65,7 +61,6 @@ On Windows, I use 150% scaling on this laptop's screen, and it looks perfect. So
 
 Ubuntu's scaling options are pretty limited — 100%, 200%, or 300%. That means everything is either too small or too large. Fedora, on the other hand, offers proper fractional scaling (125%, 150%, 175%, 200%), and it looked sharp and stable. Even better, Fedora automatically detected and set the scaling to 150% on boot — exactly what I use on Windows. This alone was a big win for Fedora.
 
----
 
 ## Touchpad, Keyboard & Gestures
 
@@ -83,7 +78,6 @@ Ubuntu's scaling options are pretty limited — 100%, 200%, or 300%. That means 
 
 The touchpad worked fine on both distros, but Fedora's combination of GNOME 48 and Wayland made things noticeably smoother. Three-finger gestures worked out of the box on Fedora, while Ubuntu didn't support them at all. Scrolling felt a bit more refined on Fedora too, especially in apps like LibreOffice.
 
----
 
 ## Audio, Bluetooth & Peripherals
 
@@ -97,7 +91,6 @@ The webcam worked on both, but Ubuntu had it mirrored horizontally. Fedora displ
 
 Speakers, mic, and dark mode all worked fine on both distros. No complaints there.
 
----
 
 ## Performance & Responsiveness
 
@@ -105,7 +98,6 @@ Both live sessions ran surprisingly well, considering they were running entirely
 
 Apps launched slightly faster on Fedora. Animations were smoother — probably thanks to Wayland. Dragging windows and switching workspaces felt snappier. Even scrolling in LibreOffice was more consistent on Fedora compared to Ubuntu.
 
----
 
 ## What I Chose
 

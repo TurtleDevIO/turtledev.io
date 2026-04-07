@@ -9,7 +9,7 @@
 		promo: 'bg-primary/10 border-primary',
 		note: 'bg-info/10 border-info',
 		warning: 'bg-warning/10 border-warning',
-		tip: 'bg-success/10 border-success',
+		tip: 'bg-accent/10 border-accent',
 		info: 'bg-info/10 border-info'
 	};
 </script>
