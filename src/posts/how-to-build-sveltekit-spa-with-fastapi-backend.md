@@ -548,4 +548,6 @@ Source code for this tutorial: [GitHub](https://github.com/TurtleDevIO/svelte-sp
 
 If you want to see a production-ready version with authentication, multi-tenancy, and Stripe integration, check out [FastSvelte](https://fastsvelte.dev/).
 
+**See also:** [Full-stack FastAPI Tutorial 1: Project Setup & Tooling](/blog/fastapi-tutorial-1-project-setup-crud-api)
+
 Smooth coding!
