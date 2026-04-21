@@ -119,4 +119,6 @@ In the coming weeks, I’ll be diving deeper into:
 * Session-based authentication with secure cookies.
 * Handling authentication and protected routes in a SvelteKit SPA.
 
+**See also:** [Full-stack FastAPI Tutorial 1: Project Setup & Tooling](/blog/fastapi-tutorial-1-project-setup-crud-api)
+
 Smooth coding!

@@ -446,4 +446,6 @@ Source code for this tutorial: [GitHub](https://github.com/TurtleDevIO/sveltekit
 
 This covers the authentication fundamentals, but production apps need features like password reset, email verification, OAuth, and role-based access control. If you need a production-ready solution with all of this built-in, check out [FastSvelte](https://fastsvelte.dev).
 
+**See also:** [Full-stack FastAPI Tutorial 1: Project Setup & Tooling](/blog/fastapi-tutorial-1-project-setup-crud-api)
+
 Smooth coding!
