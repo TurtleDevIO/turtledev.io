@@ -265,10 +265,11 @@ You can now run `ruff check .` to lint your code and `ruff format .` to format i
 ```toml
 [tool.ruff]
 line-length = 100
-extend-select = ["I"] # Organize imports with Ruff's "I" rules.
+
+[tool.ruff.lint]
+extend-select = ["I"]
 
 [tool.ruff.format]
-# Like Black, use double quotes for strings.
 quote-style = "double"
 ```
 
