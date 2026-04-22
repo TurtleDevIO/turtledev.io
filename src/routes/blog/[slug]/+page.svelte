@@ -4,6 +4,29 @@
 	import { formatDate } from '$lib/utils/date';
 
 	let { data } = $props();
+
+	const checkSvg = `<svg class="heading-anchor-icon" style="width:1.1em;height:1.1em;display:inline-block;vertical-align:middle;margin-left:0.5rem;opacity:1;color:oklch(var(--color-success))" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+	function copyHeadingLinks(node: HTMLElement) {
+		function handleClick(e: MouseEvent) {
+			const anchor = (e.target as HTMLElement).closest('h1 a, h2 a, h3 a, h4 a');
+			if (!anchor) return;
+			e.preventDefault();
+			const url = (anchor as HTMLAnchorElement).href;
+			navigator.clipboard.writeText(url);
+
+			const icon = anchor.querySelector('.heading-anchor-icon');
+			if (!icon) return;
+			const original = icon.outerHTML;
+			icon.outerHTML = checkSvg;
+			setTimeout(() => {
+				const check = anchor.querySelector('.heading-anchor-icon');
+				if (check) check.outerHTML = original;
+			}, 2000);
+		}
+		node.addEventListener('click', handleClick);
+		return { destroy: () => node.removeEventListener('click', handleClick) };
+	}
 </script>
 
 <svelte:head>
@@ -96,7 +119,7 @@
 		</div>
 	</header>
 
-	<div class="prose prose-lg max-w-none mb-12">
+	<div class="prose prose-lg max-w-none mb-12" use:copyHeadingLinks>
 		{@render data.content()}
 	</div>
 

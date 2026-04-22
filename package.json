@@ -41,6 +41,8 @@
 	},
 	"dependencies": {
 		"@vercel/analytics": "^1.5.0",
-		"daisyui": "^5.1.25"
+		"daisyui": "^5.1.25",
+		"rehype-autolink-headings": "^7.1.0",
+		"rehype-slug": "^6.0.0"
 	}
 }

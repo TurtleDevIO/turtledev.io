@@ -24,6 +24,30 @@ html {
 .prose h3,
 .prose h4 {
 	@apply font-bold text-base-content;
+	scroll-margin-top: 5rem;
+}
+
+.prose h1 a,
+.prose h2 a,
+.prose h3 a,
+.prose h4 a {
+	@apply text-base-content no-underline cursor-pointer;
+}
+
+.prose h1 a .heading-anchor-icon,
+.prose h2 a .heading-anchor-icon,
+.prose h3 a .heading-anchor-icon,
+.prose h4 a .heading-anchor-icon {
+	@apply ml-2 inline-block align-middle text-base-content/60 opacity-0 transition-opacity;
+	width: 1.1em;
+	height: 1.1em;
+}
+
+.prose h1:hover a .heading-anchor-icon,
+.prose h2:hover a .heading-anchor-icon,
+.prose h3:hover a .heading-anchor-icon,
+.prose h4:hover a .heading-anchor-icon {
+	@apply opacity-100;
 }
 
 .prose h2 {
