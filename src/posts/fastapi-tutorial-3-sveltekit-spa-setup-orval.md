@@ -40,7 +40,7 @@ When prompted, select:
 
 - **Template:** SvelteKit minimal
 - **Type checking:** TypeScript
-- **Add-ons:** Tailwind CSS (needed for DaisyUI), `sveltekit-adapter`
+- **Add-ons:** Tailwind CSS (needed for DaisyUI), `prettier`, `sveltekit-adapter`
 - **Adapter:** static (`@sveltejs/adapter-static`)
 
 Your project structure should now look like this:
@@ -287,15 +287,15 @@ Let's verify the generated client actually works by calling it from the home pag
 	}
 </script>
 
-<div class="max-w-md mx-auto mt-16 px-4">
-	<h1 class="text-2xl font-bold mb-6">Todo App</h1>
+<div class="mx-auto mt-16 max-w-md px-4">
+	<h1 class="mb-6 text-2xl font-bold">Todo App</h1>
 
-	<button class="btn btn-primary w-full" onclick={fetchTodos} disabled={loading}>
+	<button class="btn w-full btn-primary" onclick={fetchTodos} disabled={loading}>
 		{loading ? 'Loading...' : 'Fetch Todos'}
 	</button>
 
 	{#if error}
-		<div class="alert alert-error mt-4 text-sm">{error}</div>
+		<div class="mt-4 alert text-sm alert-error">{error}</div>
 	{/if}
 
 	{#if todos.length > 0}
@@ -310,7 +310,7 @@ Let's verify the generated client actually works by calling it from the home pag
 			{/each}
 		</ul>
 	{:else if !loading}
-		<p class="text-base-content/50 text-sm text-center mt-4">No todos yet.</p>
+		<p class="mt-4 text-center text-sm text-base-content/50">No todos yet.</p>
 	{/if}
 </div>
 ```
@@ -342,7 +342,7 @@ Notice how TypeScript knows `data` is `Todo[]` and `todo.title` is a `string` �
 
 </Callout>
 
-We now have a SvelteKit SPA wired up to our FastAPI backend with a type-safe generated client. In the next tutorial we'll build the full CRUD UI — listing todos, adding new ones, toggling completion, and deleting them — all using Svelte 5 runes.
+We now have a SvelteKit SPA wired up to our FastAPI backend with a type-safe generated client. In the next tutorial we'll build the full CRUD UI — listing todos, adding new ones, toggling completion, and deleting them.
 
 <Callout type="tip">
 
