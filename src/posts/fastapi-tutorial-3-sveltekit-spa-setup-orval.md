@@ -63,7 +63,13 @@ fullstack-fastapi-tutorial/
 
 ## Configuring SvelteKit as a Pure SPA
 
-Two changes are needed to turn SvelteKit into a pure SPA: swap the adapter and disable SSR.
+ To turn SvelteKit into a pure SPA, we're going to do two things: configure the adapter fallback and disable SSR globally.
+
+<Callout type="info">
+
+For more details, check out the official [SvelteKit SPA docs](https://svelte.dev/docs/kit/single-page-apps).
+
+</Callout>
 
 ### Switch to adapter-static
 
@@ -119,7 +125,7 @@ That's it — Tailwind CSS v4 loads plugins directly in CSS with `@plugin`, no s
 
 ## Setting Up Orval
 
-This is where things get interesting. [Orval](https://orval.dev/) reads your FastAPI's OpenAPI spec and generates a fully typed TypeScript API client. Every endpoint becomes a function with correct input and return types. When you change the API, you re-run Orval and the client updates automatically.
+[Orval](https://orval.dev/) reads your FastAPI's OpenAPI spec and generates a fully typed TypeScript API client. Every endpoint becomes a function with correct input and return types. When you change the API, you re-run Orval and the client updates automatically.
 
 Install Orval as a dev dependency:
 
@@ -309,7 +315,7 @@ Let's verify the generated client actually works by calling it from the home pag
 </div>
 ```
 
-A quick rundown of the DaisyUI classes:
+Notice how it already looks pretty decent with just a few class names — that's DaisyUI doing the heavy lifting. A quick rundown of the classes we used:
 
 - **`btn btn-primary`** — a styled button in the primary color
 - **`alert alert-error`** — a colored error message box
@@ -324,9 +330,9 @@ Start the dev server:
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) and click "Fetch Todos". You should get back an empty array (no todos in the backend yet) with no errors. The connection is working.
+Open [http://localhost:5173](http://localhost:5173) and click "Fetch Todos". You should get back an empty array (no todos in the backend yet) with no errors.
 
-Notice how TypeScript knows `data` is `Todo[]` and `todo.title` is a `string` — all inferred from the generated client, with no types written by hand.
+Notice how TypeScript knows `data` is `Todo[]` and `todo.title` is a `string` — all inferred from the generated client.
 
 ## What's Next
 
