@@ -324,7 +324,7 @@ Each folder will have its own `.gitignore` file for its specific needs. For exam
 
 </Callout>
 
-We've completed the initial project setup! In the next tutorial, we'll implement the actual CRUD APIs for our todo application.
+We've completed the initial project setup! In the [next tutorial](/blog/fastapi-tutorial-2-todo-crud-api), we'll implement the actual CRUD APIs for our todo application.
 
 <Callout type="tip">
 

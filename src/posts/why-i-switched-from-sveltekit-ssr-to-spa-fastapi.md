@@ -96,7 +96,7 @@ If you have a startup, you can get **free Azure credits** through the **[Microso
 
 With FastAPI's OpenAPI spec, you can generate API client code automatically with **[Orval](https://orval.dev)** (for TypeScript) or **OpenAPI Generator**. This means whenever you update your backend API, you just regenerate the client code and your frontend stays in sync.
 No more writing fetch wrappers manually. Your SPA gets typed functions for every endpoint.
-(I'll cover this in detail in an upcoming post 😉)
+(I cover this in detail in [Full-stack FastAPI Tutorial 3: SvelteKit SPA Setup with Orval](/blog/fastapi-tutorial-3-sveltekit-spa-setup-orval) 😉)
 
 <Callout type="promo">
 
@@ -109,8 +109,7 @@ No more writing fetch wrappers manually. Your SPA gets typed functions for every
 In the coming weeks, I'll be diving deeper into:
 
 * [How to Build a SvelteKit SPA with FastAPI Backend](/blog/how-to-build-sveltekit-spa-with-fastapi-backend)
-* Session-based authentication with secure cookies.
-* Handling authentication and protected routes in a SvelteKit SPA.
+* [Session-based authentication with secure cookies and protected routes in a SvelteKit SPA.](/blog/how-to-add-authentication-to-sveltekit-spa)
 
 **See also:** [Full-stack FastAPI Tutorial 1: Project Setup & Tooling](/blog/fastapi-tutorial-1-project-setup-crud-api)
 
