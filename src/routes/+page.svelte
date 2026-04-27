@@ -1,12 +1,10 @@
 <script lang="ts">
 	import { siteConfig } from '$lib/config';
-	import type { Post } from '$lib/types';
 	import PostCard from '$lib/components/PostCard.svelte';
 	import IntroSection from '$lib/components/IntroSection.svelte';
 	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 
 	let { data } = $props();
-	const posts: Post[] = data.posts;
 </script>
 
 <svelte:head>
@@ -36,7 +34,7 @@
 
 	<!-- Posts List -->
 	<div>
-		{#each posts as post}
+		{#each data.posts as post}
 			<PostCard {post} />
 		{/each}
 	</div>
