@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { siteConfig } from '$lib/config';
 	import Giscus from '$lib/components/Giscus.svelte';
+	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 	import { formatDate } from '$lib/utils/date';
 
 	let { data } = $props();
@@ -122,6 +123,8 @@
 	<div class="prose prose-lg max-w-none mb-12" use:copyHeadingLinks>
 		{@render data.content()}
 	</div>
+
+	<NewsletterForm />
 
 	<!-- Comments Section -->
 	<Giscus />

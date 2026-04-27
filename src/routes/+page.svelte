@@ -3,6 +3,7 @@
 	import type { Post } from '$lib/types';
 	import PostCard from '$lib/components/PostCard.svelte';
 	import IntroSection from '$lib/components/IntroSection.svelte';
+	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 
 	let { data } = $props();
 	const posts: Post[] = data.posts;
@@ -30,6 +31,8 @@
 
 <div class="container mx-auto px-4 py-12 max-w-3xl">
 	<IntroSection />
+
+	<NewsletterForm />
 
 	<!-- Posts List -->
 	<div>
