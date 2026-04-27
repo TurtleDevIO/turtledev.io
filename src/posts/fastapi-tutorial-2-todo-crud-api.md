@@ -392,7 +392,7 @@ FastAPI generates interactive Swagger docs at [http://localhost:8000/docs](http:
 
 </Callout>
 
-We now have a fully working CRUD API and a clean project structure ready for growth. Next up, we'll switch to the frontend and set up a SvelteKit SPA that auto-generates a type-safe API client from our OpenAPI spec using Orval.
+We now have a fully working CRUD API and a clean project structure ready for growth. [Next up](/blog/fastapi-tutorial-3-sveltekit-spa-setup-orval), we'll switch to the frontend and set up a SvelteKit SPA that auto-generates a type-safe API client from our OpenAPI spec using Orval.
 
 <Callout type="tip">
 
