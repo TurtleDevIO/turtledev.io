@@ -27,7 +27,7 @@
 	}
 </script>
 
-<div class="bg-base-200 rounded-lg p-6 my-12">
+<div class="bg-base-200 rounded-lg p-6 mt-6 mb-12">
 	{#if status === 'success'}
 		<p class="font-semibold text-base-content">You're in.</p>
 		<p class="text-base-content/70 text-sm mt-1">New posts will find their way to you.</p>
