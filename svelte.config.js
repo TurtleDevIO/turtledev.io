@@ -55,7 +55,10 @@ const mdsvexOptions = {
 						'json',
 						'toml',
 						'sh',
-						'http'
+						'http',
+						'ini',
+						'java',
+						'xml'
 					]
 				});
 			}
