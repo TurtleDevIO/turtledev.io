@@ -342,7 +342,9 @@ Notice how TypeScript knows `data` is `Todo[]` and `todo.title` is a `string` �
 
 </Callout>
 
-We now have a SvelteKit SPA wired up to our FastAPI backend with a type-safe generated client. In the next tutorial we'll build the full CRUD UI — listing todos, adding new ones, toggling completion, and deleting them.
+We now have a SvelteKit SPA wired up to our FastAPI backend with a type-safe generated client. In the next tutorial we'll build the full CRUD UI — listing todos, adding new ones, toggling completion, renaming, and deleting them.
+
+[Tutorial 4: Building the Todo CRUD UI](/blog/fastapi-tutorial-4-todo-crud-ui)
 
 <Callout type="tip">
 

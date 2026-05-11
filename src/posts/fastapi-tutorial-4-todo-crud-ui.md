@@ -11,13 +11,12 @@ readingTime: 15
 import Callout from '$lib/components/Callout.svelte';
 </script>
 
-In [Tutorial 3](/blog/fastapi-tutorial-3-sveltekit-spa-setup-orval) we wired up a SvelteKit SPA with a type-safe Orval-generated client and verified it could talk to our FastAPI backend. The home page has a "Fetch Todos" button and a hardcoded list. Functional, but not a real app yet.
+In [Tutorial 3](/blog/fastapi-tutorial-3-sveltekit-spa-setup-orval) we wired up a SvelteKit SPA with a type-safe Orval-generated client and verified it could talk to our FastAPI backend. In this tutorial we'll turn that scaffolding into a working todo app: list, create, toggle, and delete.
 
-In this tutorial we'll turn that scaffolding into a working todo app: list, create, toggle, and delete. But we're going to use this as an excuse to settle three questions every SPA eventually has to answer:
+## Prerequisites
 
-1. **Where do we load data?** `+page.ts`, `onMount`, or something else?
-2. **How do we surface errors?** Inline banners, toasts, or the SvelteKit error page?
-3. **How do we give the user feedback** when an action succeeds or fails?
+- Completed [Tutorial 3](/blog/fastapi-tutorial-3-sveltekit-spa-setup-orval) or cloned the [03-frontend-setup branch](https://github.com/TurtleDevIO/fullstack-fastapi-tutorial/tree/03-frontend-setup)
+- FastAPI backend running on `localhost:8000`
 
 <Callout type="promo">
 
@@ -25,47 +24,43 @@ In this tutorial we'll turn that scaffolding into a working todo app: list, crea
 
 </Callout>
 
-## Prerequisites
-
-- Completed [Tutorial 3](/blog/fastapi-tutorial-3-sveltekit-spa-setup-orval) or cloned the [03-frontend-setup branch](https://github.com/TurtleDevIO/fullstack-fastapi-tutorial/tree/03-frontend-setup)
-- FastAPI backend running on `localhost:8000`
-
 ## The mental model: every async operation has four states
 
 Every async operation in your app (loading a list, submitting a form, toggling a checkbox) moves through the same four states:
 
 ```
-idle  →  loading  →  success
-                  ↘  error
+idle (button ready)  →  loading (request in flight)  →  success (item appears / toast)
+                                                      ↘  error (toast)
 ```
 
 Once you see the app this way, the three questions above answer themselves:
 
-- **Where to load data?** In a `+page.ts` load function, using the stream pattern: return the promise without awaiting it, so navigation stays instant and the component handles the pending state with `{#await}`. (See [SvelteKit SPA: onMount vs page.ts](/blog/sveltekit-spa-load-functions-vs-onmount) for a full comparison.)
-- **How to surface errors?** Depends on which operation failed. Loading data: show it inline, because the page can't proceed without it. Mutating data: show a toast, because the page is still usable and the user just needs to know their action didn't take.
-- **How to give feedback?** Same split. The state of the operation tells you what UI to show.
+- **How to load data?** We will be using SvelteKits universal load functions ( `+page.ts`) with the stream pattern. Other options were `page.ts` without streaming and `onMount`. In a real web application, there will be scenarios/pages where you would prefer or have to use the other two. (See [SvelteKit SPA: onMount vs page.ts](/blog/sveltekit-spa-load-functions-vs-onmount) for a full comparison.)
+- **How to surface errors?** It depends on which operation failed. If data loading fails, the page is broken. The user is staring at an empty screen with nothing to do. That error belongs inline, right where the content should be. If a mutation fails (creating, updating, or deleting something), the page is still perfectly usable. The user just needs to know their action didn't go through. That's a toast: a brief, dismissible message that doesn't hijack the page.
+- **How to give feedback?** The same split applies. While data is loading, show a skeleton where the content will appear. While a mutation is in flight, disable the button so the user knows something is happening and can't accidentally fire it twice. On success, sometimes a toast makes sense, but often the UI change itself is enough: the new item appears in the list, the deleted item disappears. You don't always need to announce it.
 
-| Situation | Where it shows up |
-| --- | --- |
-| Data is loading | Inline skeleton via `{#await}` |
-| Data load failed | Inline error via `{:catch}` |
-| Mutation in progress | Disabled button |
-| Mutation succeeded | Toast (or silent, if the UI change speaks for itself) |
-| Mutation failed | Toast |
+Here is how that maps to concrete UI across both operation types:
 
-Two display surfaces (inline and toast) and a clear rule for which one to use.
+| | In progress | Success | Error |
+| --- | --- | --- | --- |
+| Data load | Inline skeleton via [`{#await}`](https://svelte.dev/docs/svelte/await-expressions) | data appears | Inline error via `{:catch}` |
+| Mutation | Disabled button | Toast (or silent) | Toast |
 
-<Callout type="info">
 
-This isn't a SvelteKit pattern or a Svelte pattern. It's a UI pattern. The same split works in React, Vue, or vanilla JS; we're expressing it in Svelte 5 here.
+## Data loading: streaming with promises
 
-</Callout>
+SvelteKit gives you three ways to load data in a SPA: `onMount`, a `+page.ts` that awaits the data before rendering (blocking navigation), or a `+page.ts` that returns a promise and lets the component handle the pending state ([streaming with promises](https://svelte.dev/docs/kit/load#Streaming-with-promises)). We compare all three in depth in [this post](/blog/sveltekit-spa-load-functions-vs-onmount). For a CRUD list like this one, streaming with promises is the right choice.
 
-## Data loading: stream
+To make the loading states easy to see, every endpoint in `todo_route.py` has a one-second artificial delay. Mutation endpoints (create, toggle, delete) also have a 20% chance of returning a 500 error, so you can watch the toast error state trigger without the list getting randomly broken mid-session. To disable either, comment out the relevant lines in each endpoint:
 
-SvelteKit gives you three ways to load data in a SPA: `onMount`, a `+page.ts` that awaits the data before rendering (blocking navigation), or a `+page.ts` that returns a promise and lets the component handle the pending state (stream). We compare all three in depth in [this post](/blog/sveltekit-spa-load-functions-vs-onmount). For a CRUD list like this one, stream is the right choice.
+```python
+# await asyncio.sleep(SIMULATED_DELAY)
+# maybe_fail()
+```
 
-With stream, the load function returns immediately without blocking navigation:
+You would remove both entirely in a real app.
+
+With streaming, the load function returns immediately without blocking navigation:
 
 ```ts
 // +page.ts
@@ -75,7 +70,7 @@ export const load: PageLoad = ({ depends }) => {
 };
 ```
 
-The component receives `data.todos` as a promise and handles the three states with `{#await}`:
+The component receives `data.todos` as a promise and handles the three states with [`{#await}`](https://svelte.dev/docs/svelte/await-expressions):
 
 ```svelte
 {#await data.todos}
@@ -192,7 +187,7 @@ Create `frontend/src/lib/components/Toaster.svelte`:
 
 <div class="toast toast-top toast-end z-50">
     {#each toasts as t (t.id)}
-        <div class="alert alert-{t.type}">
+        <div class="alert shadow-lg border-2 font-medium {t.type === 'success' ? 'alert-success' : 'alert-error'}">
             <span>{t.message}</span>
         </div>
     {/each}
@@ -232,14 +227,13 @@ Update `+page.svelte` with the full script and add the form above the `{#await}`
 ```svelte
 <script lang="ts">
     import { invalidate } from '$app/navigation';
-    import { createTodo, patchTodo, deleteTodo } from '$lib/api/gen/todos';
-    import type { Todo } from '$lib/api/gen/model';
+    import { createTodo } from '$lib/api/gen/todos';
     import { toast } from '$lib/toast.svelte';
 
     let { data } = $props();
 
     let newTitle = $state('');
-    let creating = $state(false);
+    let creating = $state(false); // disables the button while the request is in flight
 
     async function handleCreate(e: SubmitEvent) {
         e.preventDefault();
@@ -285,105 +279,166 @@ Update `+page.svelte` with the full script and add the form above the `{#await}`
 
 **The form lives outside the `{#await}` block.** It is available immediately, even while the list is loading. Users can start typing before the existing todos finish loading.
 
-## Toggling completion
+## TodoItem component
 
-Add state and a handler to `<script>`:
+Toggle, delete, and rename all operate on a single row. Instead of tracking `togglingId`, `deletingId`, `renamingId` by ID in the parent, we extract a `TodoItem` component. Each instance owns its own state as simple booleans, and `+page.svelte` stays focused on the list.
 
-```ts
-let togglingId = $state<number | null>(null);
-
-async function handleToggle(todo: Todo) {
-    if (togglingId !== null) return;
-    togglingId = todo.id;
-    try {
-        const { status } = await patchTodo(todo.id, { completed: !todo.completed });
-        if (status === 200) {
-            await invalidate('app:todos');
-        } else {
-            toast.error('Could not update todo');
-        }
-    } catch {
-        toast.error('Network error. Try again.');
-    } finally {
-        togglingId = null;
-    }
-}
-```
-
-Replace the `<li>` inside the `{:then}` block:
+Create `frontend/src/lib/components/TodoItem.svelte`:
 
 ```svelte
+<script lang="ts">
+    import { invalidate } from '$app/navigation';
+    import { patchTodo, deleteTodo } from '$lib/api/gen/todos';
+    import type { Todo } from '$lib/api/gen/model';
+    import { toast } from '$lib/toast.svelte';
+
+    let { todo }: { todo: Todo } = $props();
+
+    let toggling = $state(false);
+    let deleting = $state(false);
+    let editing = $state(false);
+    let editTitle = $state('');
+    let renaming = $state(false);
+    let editInput = $state<HTMLInputElement | null>(null);
+
+    $effect(() => { if (editInput) editInput.focus(); });
+
+    async function handleToggle() {
+        toggling = true;
+        try {
+            const { status } = await patchTodo(todo.id, { completed: !todo.completed });
+            if (status === 200) {
+                await invalidate('app:todos');
+            } else {
+                toast.error('Could not update todo');
+            }
+        } catch {
+            toast.error('Network error. Try again.');
+        } finally {
+            toggling = false;
+        }
+    }
+
+    async function handleDelete() {
+        if (!confirm(`Delete "${todo.title}"?`)) return;
+        deleting = true;
+        try {
+            const { status } = await deleteTodo(todo.id);
+            if (status === 204) {
+                toast.success('Todo deleted');
+                await invalidate('app:todos');
+            } else {
+                toast.error('Could not delete todo');
+            }
+        } catch {
+            toast.error('Network error. Try again.');
+        } finally {
+            deleting = false;
+        }
+    }
+
+    function startEdit() {
+        editing = true;
+        editTitle = todo.title;
+    }
+
+    function cancelEdit() {
+        editing = false;
+        editTitle = '';
+    }
+
+    async function handleRename() {
+        const title = editTitle.trim();
+        if (!title || title === todo.title) { cancelEdit(); return; }
+        editing = false;
+        renaming = true;
+        try {
+            const { status } = await patchTodo(todo.id, { title });
+            if (status === 200) {
+                await invalidate('app:todos');
+            } else {
+                toast.error('Could not rename todo');
+            }
+        } catch {
+            toast.error('Network error. Try again.');
+        } finally {
+            renaming = false;
+            editTitle = '';
+        }
+    }
+</script>
+
 <li class="flex items-center gap-2">
     <input
         type="checkbox"
         class="checkbox"
         checked={todo.completed}
-        disabled={togglingId === todo.id}
-        onchange={() => handleToggle(todo)}
+        disabled={toggling}
+        onchange={handleToggle}
     />
-    <span class="flex-1 {todo.completed ? 'text-base-content/50 line-through' : ''}">
-        {todo.title}
-    </span>
+    {#if editing}
+        <input
+            class="input input-bordered input-sm flex-1"
+            bind:value={editTitle}
+            bind:this={editInput}
+            onkeydown={(e) => {
+                if (e.key === 'Enter') handleRename();
+                if (e.key === 'Escape') cancelEdit();
+            }}
+        />
+    {:else}
+        <span
+            class="flex-1 cursor-pointer {todo.completed ? 'text-base-content/50 line-through' : ''}"
+            onclick={startEdit}
+            role="button"
+            tabindex="0"
+            onkeydown={(e) => e.key === 'Enter' && startEdit()}
+        >
+            {renaming ? '...' : todo.title}
+        </span>
+    {/if}
+    <button
+        class="btn btn-ghost btn-sm"
+        disabled={deleting}
+        onclick={handleDelete}
+    >
+        {deleting ? '...' : '✕'}
+    </button>
 </li>
 ```
 
-**`togglingId` holds the ID of the row being toggled, not a boolean.** This disables just that row mid-update, not every checkbox. If you need concurrent toggles across rows, switch to a `Set<number>`.
+A few things worth calling out:
 
-**No success toast.** The checkbox flipping is the feedback. A toast on top of that would be noisy.
+**Booleans instead of nullable IDs.** In a flat list in `+page.svelte` you need `togglingId: number | null` to know *which* row is busy. Inside the component, each instance only cares about itself, so `toggling: boolean` is enough.
 
-## Deleting a todo
+**No success toast for toggle.** The checkbox flipping is the feedback. A toast on top would be noisy. We do toast on delete because the row disappearing is easy to miss.
 
-Add state and a handler to `<script>`:
+**`editInput` and `$effect` for focus.** `editInput` is a reactive reference to the text input. The `$effect` fires whenever it changes — when the input mounts, `editInput` becomes non-null and the effect focuses it. No `autofocus` attribute needed.
 
-```ts
-let deletingId = $state<number | null>(null);
+**Rename: Enter saves, Escape cancels.** If the title is empty or unchanged, `cancelEdit` discards it without a request.
 
-async function handleDelete(todo: Todo) {
-    if (!confirm(`Delete "${todo.title}"?`)) return;
-    deletingId = todo.id;
-    try {
-        const { status } = await deleteTodo(todo.id);
-        if (status === 204) {
-            toast.success('Todo deleted');
-            await invalidate('app:todos');
-        } else {
-            toast.error('Could not delete todo');
-        }
-    } catch {
-        toast.error('Network error. Try again.');
-    } finally {
-        deletingId = null;
-    }
-}
-```
-
-Add the delete button inside `<li>`:
+Now import it in `+page.svelte` and replace the `<li>` with `<TodoItem {todo} />`:
 
 ```svelte
-<button
-    class="btn btn-ghost btn-sm"
-    disabled={deletingId === todo.id}
-    onclick={() => handleDelete(todo)}
->
-    {deletingId === todo.id ? '...' : '✕'}
-</button>
+<script lang="ts">
+    import { invalidate } from '$app/navigation';
+    import { createTodo } from '$lib/api/gen/todos';
+    import { toast } from '$lib/toast.svelte';
+    import TodoItem from '$lib/components/TodoItem.svelte';
+
+    let { data } = $props();
+    // ... handleCreate unchanged
+</script>
+
+<!-- inside {#each} -->
+<ul class="space-y-2">
+    {#each todos as todo (todo.id)}
+        <TodoItem {todo} />
+    {/each}
+</ul>
 ```
 
-**We toast on success here, unlike toggle.** The row disappearing is easy to miss. The toast confirms what was deleted.
-
-Save and try the full flow: add todos, toggle some, delete one, stop the backend mid-action. Everything should behave correctly.
-
-## Recap: the rules we just applied
-
-| Rule | Where we applied it |
-| --- | --- |
-| Data loads in `+page.ts` (stream) | Load function returns `{ todos: getTodos().then(...) }` |
-| Loading state handled by `{#await}` | Pending: skeleton, resolved: list, rejected: inline error |
-| `invalidate` after every mutation | Replaces manual state patching; server is always source of truth |
-| Each async operation owns its state | `creating`, `togglingId`, `deletingId`, never reused |
-| Mutation feedback goes through toasts | Every `try`/`catch` ends in `toast.success()` or `toast.error()` |
-
-The stream approach removes a whole category of bugs: local state going out of sync with the server. The trade-off is a re-fetch on every mutation. For most apps, that is the right call.
+Save and try the full flow: add todos, toggle some, rename one, delete one, stop the backend mid-action. Everything should behave correctly.
 
 ## What's next
 
