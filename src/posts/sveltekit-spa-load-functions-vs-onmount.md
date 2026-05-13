@@ -7,7 +7,7 @@ published: true
 readingTime: 15
 ---
 
-I've been building web applications with SvelteKit for the last five years, both SSR and SPA. A year ago I switched to SPA with a Python backend. Since then I've found myself using all three approaches depending on the page: `onMount`, a load function with awaited data, or a load function that returns a promise (stream), without really knowing whether any of them was the best option. Each has clear wins and clear trade-offs depending on what the page does. I finally decided to invest the time to investigate all three in depth and draw a proper conclusion. This article maps them out section by section so you can pick the right one for the right job.
+I've been building web applications with SvelteKit for the last five years, both SSR and SPA. A year ago I switched to SPA with a Python backend. Since then I've found myself using all three approaches depending on the page: `onMount`, a [SvelteKit load function](https://svelte.dev/docs/kit/load#Universal-vs-server-When-does-which-load-function-run) with awaited data, or a load function that returns a promise (stream), without really knowing whether any of them was the best option. Each has clear wins and clear trade-offs depending on what the page does. I finally decided to invest the time to investigate all three in depth and draw a proper conclusion. This article maps them out section by section so you can pick the right one for the right job.
 
 ## Mental model
 
@@ -345,6 +345,8 @@ Here is our final score table:
 Load functions take some of that control away, but also take some of the burden. Between the two variants, stream is the clear winner for SPAs: instant navigation, built-in loading state, and automatic param reactivity with no extra code. The one exception is editable forms, where awaited has a genuine edge because `data` acts as a clean reference for dirty detection. And forms that edit a single entity rarely need a skeleton anyway, so blocking navigation is a fine trade.
 
 If you decide to go with load functions, my recommendation is to use `page.ts` (awaited) for pages with editable forms and `page.ts` (stream) for everything else.
+
+A couple of days after writing this, I changed my mind about the framing itself. The scoring exercise treats this as a winner-takes-all decision, but in a real app you reach for whichever pattern fits the page. The follow-up post, [when to use onMount, page.ts (awaited), and page.ts (stream)](/blog/sveltekit-spa-when-to-use-load-functions-and-onmount), walks through concrete scenarios per pattern.
 
 This article took me two days to put together, and I learned a lot along the way — including changing my own opinion a few times ☺. I hope it saves you some of that time and helps you make a more informed choice for your own project. If anything is wrong or missing, let me know.
 

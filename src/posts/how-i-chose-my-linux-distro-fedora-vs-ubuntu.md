@@ -115,4 +115,6 @@ I am sure that the issues above with Ubuntu can be fixed on a real install with 
 
 Now it is time to install Fedora and do some post-installation setup. Stay tuned.
 
+Once Fedora is up, see [how I set up the terminal with Oh My Zsh and Powerlevel10k](/blog/setting-up-the-terminal-zsh-oh-my-zsh-powerlevel10k).
+
 Smooth computing!

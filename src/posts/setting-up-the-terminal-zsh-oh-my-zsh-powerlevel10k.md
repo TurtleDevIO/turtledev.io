@@ -131,4 +131,6 @@ After all of this, the terminal is in a good shape. One more thing I'd recommend
 
 If you're on Fedora (or any Linux distro) and haven't done this yet, it's worth the half hour.
 
+For more on the Fedora setup, see [how I chose Fedora over Ubuntu](/blog/how-i-chose-my-linux-distro-fedora-vs-ubuntu) and [why I'm switching to Linux again](/blog/why-i-am-switching-from-windows-to-linux-again).
+
 Smooth typing!
