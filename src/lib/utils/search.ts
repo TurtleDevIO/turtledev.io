@@ -23,7 +23,7 @@ export async function loadSearchIndex(fetcher: typeof fetch = fetch): Promise<Se
 				{ name: 'description', weight: 0.3 },
 				{ name: 'categories', weight: 0.2 }
 			],
-			threshold: 0.4,
+			threshold: 0.2,
 			ignoreLocation: true,
 			includeScore: false
 		});
