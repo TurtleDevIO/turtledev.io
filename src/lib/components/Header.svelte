@@ -1,14 +1,32 @@
 <script lang="ts">
 	import { siteConfig } from '$lib/config';
 	import ThemeToggle from './ThemeToggle.svelte';
+	import SearchModal from './SearchModal.svelte';
 	import { themeStore } from '$lib/utils/theme.svelte';
 
 	let iconSrc = $derived(themeStore.isDark ? '/images/icon-dark.png' : '/images/icon-light.png');
 	let mobileMenuOpen = $state(false);
+	let searchOpen = $state(false);
 
 	const toggleMobileMenu = () => {
 		mobileMenuOpen = !mobileMenuOpen;
 	};
+
+	const openSearch = () => {
+		searchOpen = true;
+		mobileMenuOpen = false;
+	};
+
+	$effect(() => {
+		function onKeydown(event: KeyboardEvent) {
+			if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+				event.preventDefault();
+				searchOpen = !searchOpen;
+			}
+		}
+		window.addEventListener('keydown', onKeydown);
+		return () => window.removeEventListener('keydown', onKeydown);
+	});
 </script>
 
 <header class="sticky top-0 z-50 bg-base-100/80 backdrop-blur-sm">
@@ -35,6 +53,30 @@
 				</li>
 				<li>
 					<a href="/contact" class="hover:text-primary transition-colors">Contact</a>
+				</li>
+				<li>
+					<button
+						type="button"
+						onclick={openSearch}
+						class="btn btn-ghost btn-square"
+						aria-label="Search posts"
+						title="Search posts (⌘K)"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"
+							/>
+						</svg>
+					</button>
 				</li>
 				<li>
 					<ThemeToggle />
@@ -114,6 +156,30 @@
 						</a>
 					</li>
 					<li>
+						<button
+							type="button"
+							onclick={openSearch}
+							class="flex items-center gap-2 hover:text-primary transition-colors"
+							aria-label="Search posts"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-5 w-5"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"
+								/>
+							</svg>
+							Search
+						</button>
+					</li>
+					<li>
 						<ThemeToggle />
 					</li>
 				</ul>
@@ -121,3 +187,5 @@
 		{/if}
 	</nav>
 </header>
+
+<SearchModal bind:open={searchOpen} />
