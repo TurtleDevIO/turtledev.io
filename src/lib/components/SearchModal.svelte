@@ -82,7 +82,7 @@
 
 {#if open}
 	<div
-		class="modal modal-open"
+		class="modal modal-open modal-top"
 		role="dialog"
 		aria-modal="true"
 		aria-label="Search posts"
@@ -97,7 +97,7 @@
 			onclick={close}
 		></button>
 
-		<div class="modal-box max-w-2xl p-0 overflow-hidden">
+		<div class="modal-box max-w-2xl w-full mx-auto mt-20 p-0 overflow-hidden">
 			<div class="flex items-center gap-2 px-4 py-3 border-b border-base-300">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
