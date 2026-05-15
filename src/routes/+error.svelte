@@ -11,6 +11,8 @@
 
 <svelte:head>
 	<title>{errorTitle} - {siteConfig.name}</title>
+	<meta name="description" content={errorMessage} />
+	<meta name="robots" content="noindex, follow" />
 </svelte:head>
 
 <div class="container mx-auto px-4 py-16 max-w-2xl text-center">
