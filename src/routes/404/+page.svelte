@@ -4,6 +4,8 @@
 
 <svelte:head>
 	<title>Page Not Found - {siteConfig.name}</title>
+	<meta name="description" content="The page you're looking for doesn't exist on {siteConfig.name}. Try the home page, blog, or contact page instead." />
+	<meta name="robots" content="noindex, follow" />
 </svelte:head>
 
 <div class="container mx-auto px-4 py-16 max-w-2xl text-center">
