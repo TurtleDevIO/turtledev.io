@@ -5,11 +5,28 @@
 	import { themeStore } from '$lib/utils/theme.svelte';
 	import { siteConfig } from '$lib/config';
 	import { onMount } from 'svelte';
+	import { track } from '@vercel/analytics';
 
 	let { children } = $props();
 
 	onMount(() => {
 		themeStore.init();
+
+		// Track clicks on FastSvelte links so we know which posts drive referrals.
+		// Links live in markdown across many posts, so we delegate from the document
+		// rather than wiring an onclick into every link.
+		function handleFastSvelteClick(event: MouseEvent) {
+			const anchor = (event.target as HTMLElement | null)?.closest('a');
+			if (!anchor || !anchor.hostname.endsWith('fastsvelte.dev')) return;
+
+			track('fastsvelte-click', {
+				post: window.location.pathname,
+				href: anchor.href
+			});
+		}
+
+		document.addEventListener('click', handleFastSvelteClick);
+		return () => document.removeEventListener('click', handleFastSvelteClick);
 	});
 </script>
 
