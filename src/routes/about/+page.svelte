@@ -1,21 +1,12 @@
 <script lang="ts">
 	import { siteConfig } from '$lib/config';
-
-	const pageTitle = `About - ${siteConfig.name}`;
-	const pageDescription = `About Harun, a Canadian software developer with nearly two decades of industry experience writing about software architecture, simplicity, and craftsmanship.`;
-	const pageUrl = `${siteConfig.url}/about`;
+	import Seo from '$lib/components/Seo.svelte';
 </script>
 
-<svelte:head>
-	<title>{pageTitle}</title>
-	<meta name="description" content={pageDescription} />
-	<link rel="canonical" href={pageUrl} />
-	<meta property="og:title" content={pageTitle} />
-	<meta property="og:description" content={pageDescription} />
-	<meta property="og:url" content={pageUrl} />
-	<meta name="twitter:title" content={pageTitle} />
-	<meta name="twitter:description" content={pageDescription} />
-</svelte:head>
+<Seo
+	title={`About - ${siteConfig.name}`}
+	description="About Harun, a Canadian software developer with nearly two decades of industry experience writing about software architecture, simplicity, and craftsmanship."
+/>
 
 <div class="container mx-auto max-w-3xl px-4 py-16">
 	<h1 class="mb-10 text-4xl font-bold">About</h1>

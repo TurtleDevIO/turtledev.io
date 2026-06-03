@@ -3,9 +3,12 @@
 	import PostCard from '$lib/components/PostCard.svelte';
 	import IntroSection from '$lib/components/IntroSection.svelte';
 	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 
 	let { data } = $props();
 </script>
+
+<Seo title={siteConfig.title} description={siteConfig.longDescription} />
 
 <svelte:head>
 	<!-- JSON-LD Organization Schema -->

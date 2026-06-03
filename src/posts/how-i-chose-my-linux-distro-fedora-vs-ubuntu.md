@@ -1,14 +1,14 @@
 ---
-title: "How I Chose My Linux Distro (Fedora vs Ubuntu)"
-description: "I tested Fedora 42 and Ubuntu 24.04 side by side on a 16″ Lenovo IdeaPad 5 Pro i5 to see which Linux distro works better out of the box."
-date: "2025-11-04"
-categories: ["linux", "ubuntu", "fedora", "gnome"]
+title: 'How I Chose My Linux Distro (Fedora vs Ubuntu)'
+description: 'I tested Fedora 42 and Ubuntu 24.04 side by side on a 16″ Lenovo IdeaPad 5 Pro i5 to see which Linux distro works better out of the box.'
+date: '2025-11-04'
+categories: ['linux', 'ubuntu', 'fedora', 'gnome']
 published: true
 readingTime: 15
 ---
 
-![Lenovo IdeaPad 5 Pro - the laptop used for testing Linux distros](/images/posts/lenovo-ideapad.jpg)
-*Lenovo IdeaPad 5 Pro 16″ - my test machine for comparing Fedora and Ubuntu*
+![Lenovo IdeaPad 5 Pro - the laptop used for testing Linux distros](/images/posts/lenovo-ideapad.webp)
+_Lenovo IdeaPad 5 Pro 16″ - my test machine for comparing Fedora and Ubuntu_
 
 In my [previous post](/blog/why-i-am-switching-from-windows-to-linux-again), I explained why I'm switching to Linux and mentioned I'd be testing Ubuntu and Fedora side by side as live USBs before committing to an install. Well, I did exactly that — booted both distros on my [Lenovo IdeaPad 5 Pro Gen 7](https://www.lenovo.com/ca/en/p/laptops/ideapad/ideapad-500/ideapad-5i-pro-gen-7-16-inch-intel/len101i0050?displayrulevalidation=false) and tested everything I could think of.
 
@@ -30,7 +30,6 @@ Before diving into the results, here's what I was working with:
 
 I kept the firmware settings at their defaults (UEFI, Secure Boot enabled, AHCI for storage, virtualization on). Both distros booted fine without any BIOS tweaks.
 
-
 ## System Overview
 
 | Feature        | Ubuntu 24.04 LTS  | Fedora 42         |
@@ -43,10 +42,9 @@ I kept the firmware settings at their defaults (UEFI, Secure Boot enabled, AHCI 
 | Secure Boot    | Supported         | Supported         |
 | UEFI           | Yes               | Yes               |
 
-One thing I noticed right away: Fedora boots directly into Wayland, while Ubuntu's live ISO still defaults to X11. A full Ubuntu install might default to Wayland, but that's something I'd need to verify later. 
+One thing I noticed right away: Fedora boots directly into Wayland, while Ubuntu's live ISO still defaults to X11. A full Ubuntu install might default to Wayland, but that's something I'd need to verify later.
 
 Shutdown times were surprisingly different. Fedora shut down in about 15 seconds, while Ubuntu took around 2 minutes. Something probably went wrong with Ubuntu's shutdown process during the live session, but it's worth noting.
-
 
 ## Display & Scaling
 
@@ -60,7 +58,6 @@ On Windows, I use 150% scaling on this laptop's screen, and it looks perfect. So
 | External Monitor (LG 49″ 5120×1440 @ 60 Hz) | OK                                      | OK                                              |
 
 Ubuntu's scaling options are pretty limited — 100%, 200%, or 300%. That means everything is either too small or too large. Fedora, on the other hand, offers proper fractional scaling (125%, 150%, 175%, 200%), and it looked sharp and stable. Even better, Fedora automatically detected and set the scaling to 150% on boot — exactly what I use on Windows. This alone was a big win for Fedora.
-
 
 ## Touchpad, Keyboard & Gestures
 
@@ -78,7 +75,6 @@ Ubuntu's scaling options are pretty limited — 100%, 200%, or 300%. That means 
 
 The touchpad worked fine on both distros, but Fedora's combination of GNOME 48 and Wayland made things noticeably smoother. Three-finger gestures worked out of the box on Fedora, while Ubuntu didn't support them at all. Scrolling felt a bit more refined on Fedora too, especially in apps like LibreOffice.
 
-
 ## Audio, Bluetooth & Peripherals
 
 Ubuntu's live ISO didn't recognize my Wi-Fi adapter at all. Without internet, I couldn't test the browser or download anything. Fedora, on the other hand, picked up the Wi-Fi on the start and I just selected my Wi-Fi and entered my password to get connected.
@@ -91,13 +87,11 @@ The webcam worked on both, but Ubuntu had it mirrored horizontally. Fedora displ
 
 Speakers, mic, and dark mode all worked fine on both distros. No complaints there.
 
-
 ## Performance & Responsiveness
 
 Both live sessions ran surprisingly well, considering they were running entirely from a USB stick. But Fedora felt noticeably lighter and more responsive overall.
 
 Apps launched slightly faster on Fedora. Animations were smoother — probably thanks to Wayland. Dragging windows and switching workspaces felt snappier. Even scrolling in LibreOffice was more consistent on Fedora compared to Ubuntu.
-
 
 ## What I Chose
 

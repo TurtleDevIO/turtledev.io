@@ -2,6 +2,7 @@
 	import { siteConfig } from '$lib/config';
 	import Giscus from '$lib/components/Giscus.svelte';
 	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import { formatDate } from '$lib/utils/date';
 
 	let { data } = $props();
@@ -31,25 +32,12 @@
 </script>
 
 <svelte:head>
-	<title>{data.meta.title} - {siteConfig.name}</title>
-	<meta name="description" content={data.meta.description} />
-
-	<!-- Open Graph -->
+	<!-- Article-specific Open Graph -->
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content={data.meta.title} />
-	<meta property="og:description" content={data.meta.description} />
-	<meta property="og:url" content={`${siteConfig.url}/blog/${data.meta.slug}`} />
 	<meta property="article:published_time" content={data.meta.date} />
 	{#each data.meta.categories as category}
 		<meta property="article:tag" content={category} />
 	{/each}
-
-	<!-- Twitter Card -->
-	<meta name="twitter:title" content={data.meta.title} />
-	<meta name="twitter:description" content={data.meta.description} />
-
-	<!-- Canonical URL -->
-	<link rel="canonical" href={`${siteConfig.url}/blog/${data.meta.slug}`} />
 
 	<!-- JSON-LD Schema -->
 	{@html `<script type="application/ld+json">
@@ -81,6 +69,11 @@
 	}
 	<\/script>`}
 </svelte:head>
+
+<Seo
+	title={`${data.meta.title} - ${siteConfig.name}`}
+	description={data.meta.description}
+/>
 
 <article class="container mx-auto px-4 py-12 max-w-3xl">
 	<header class="mb-8 pb-6 border-b border-base-300">
