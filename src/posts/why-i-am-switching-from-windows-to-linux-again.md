@@ -1,20 +1,20 @@
 ---
 title: "Why I'm Switching to Linux (Again)"
 description: "After years on Windows and several failed attempts to switch, I'm now starting a slow transition to Linux — with the goal of building an environment I fully control and genuinely enjoy working in."
-date: "2025-11-03"
-categories: ["linux", "windows", "wsl"]
+date: '2025-11-03'
+categories: ['linux', 'windows', 'wsl']
 published: true
 readingTime: 8
 ---
 
-![My first laptop - Sony Vaio from 2006, where I installed Linux for the first time](/images/posts/sony-vaio-2026-09.JPG)
-*My first laptop - a Sony Vaio from 2006 (shown here running Windows XP, but this was the machine where I first installed Linux)*
+![My first laptop - Sony Vaio from 2006, where I installed Linux for the first time](/images/posts/sony-vaio-2026-09.webp)
+_My first laptop - a Sony Vaio from 2006 (shown here running Windows XP, but this was the machine where I first installed Linux)_
 
 I remember installing Fedora Core ? (I think it was 4) on my [10.6-inch Sony Vaio](https://vaiolibrary.com/PCG-TR) Laptop back in 2006. What a beauty that machine was and how time flies is out of our topic 😢. In those days, almost nothing worked out of the box with Linux. I remember spending days to setting up the wireless driver and getting the right screen resolution. I still remember the joy of seeing the Google homepage load for the first time on Firefox running on Fedora 🥲.
 
-Over the years, I kept trying to switch to Linux from time to time. It was exciting, cool, and free. But it required commitment and patience which I couldn't afford. On the other hand, Windows was less hassle but as I get into more advanced software development work, I noticed that Linux was the platform where most of the best tools and frameworks were developed first. So I always kept my interest in Linux and learned it as much as I could while using Windows as my main OS. 
+Over the years, I kept trying to switch to Linux from time to time. It was exciting, cool, and free. But it required commitment and patience which I couldn't afford. On the other hand, Windows was less hassle but as I get into more advanced software development work, I noticed that Linux was the platform where most of the best tools and frameworks were developed first. So I always kept my interest in Linux and learned it as much as I could while using Windows as my main OS.
 
-For a long time, I used **Git Bash on Windows**, also tried Cygwin and WSL 1. Finally **WSL 2** came out and I fully switched my development environment to WSL 2 with Ubuntu. It was best of both worlds — Windows would take care of device drivers and everyday applications and WSL 2 with VS Code (with WSL extension) would be my development environment. 
+For a long time, I used **Git Bash on Windows**, also tried Cygwin and WSL 1. Finally **WSL 2** came out and I fully switched my development environment to WSL 2 with Ubuntu. It was best of both worlds — Windows would take care of device drivers and everyday applications and WSL 2 with VS Code (with WSL extension) would be my development environment.
 
 After years of using Windows with WSL 2 as my main development environment, I've decided it's finally time to give switching to Linux a real try. Ironically, this isn’t because Windows has gotten worse technically — in fact, Windows 11 is remarkably stable, and WSL has become an incredible tool for developers. But over the years, Microsoft has been pushing an agenda that increasingly conflicts with my values as a developer and user.
 
