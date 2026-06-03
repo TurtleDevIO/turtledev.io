@@ -290,7 +290,7 @@ Running `ruff check . --fix` will automatically fix linting and formatting error
 }
 ```
 
-While the VS Code extension is convenient, you can always run `ruff check .` and `ruff format .` from the terminal. This is useful for developers not using VS Code and for running Ruff in CI/CD pipelines (we'll set up GitHub Actions in a future tutorial). 
+While the VS Code extension is convenient, you can always run `ruff check .` and `ruff format .` from the terminal. This is useful for developers not using VS Code and for running Ruff in CI/CD pipelines (we'll set up GitHub Actions in a future tutorial).
 
 Another important setting to add is `python.defaultInterpreterPath`. This ensures VS Code recognizes the correct virtual environment and Python interpreter on any machine:
 

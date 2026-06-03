@@ -1,8 +1,8 @@
 ---
-title: "How to Build a SvelteKit SPA with FastAPI Backend"
-description: "Learn how to connect a Svelte SPA with a FastAPI backend using Orval to auto-generate TypeScript API clients from OpenAPI specs for full type safety and clean architecture."
-date: "2025-10-15"
-categories: ["svelte", "fastapi", "orval", "spa"]
+title: 'How to Build a SvelteKit SPA with FastAPI Backend'
+description: 'Learn how to connect a Svelte SPA with a FastAPI backend using Orval to auto-generate TypeScript API clients from OpenAPI specs for full type safety and clean architecture.'
+date: '2025-10-15'
+categories: ['svelte', 'fastapi', 'orval', 'spa']
 published: true
 readingTime: 25
 ---
@@ -20,7 +20,6 @@ We'll build a simple **todo list app** to demonstrate how the frontend and backe
 **Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready FastAPI + SvelteKit starter with authentication, payments, and more built-in.
 
 </Callout>
-
 
 ## Project Structure
 
@@ -226,6 +225,7 @@ npx sv create frontend
 ```
 
 Select the following options:
+
 - **Template**: SvelteKit minimal
 - **Type checking**: Yes, using TypeScript syntax
 - **Add-ons**: prettier
@@ -233,13 +233,13 @@ Select the following options:
 
 ### Configure as SPA
 
-The project already comes with `@sveltejs/adapter-auto` which automatically detects your deployment environment. We just need to configure it as a SPA. We can also use static adapter with a fallback page as explained [here](https://svelte.dev/docs/kit/single-page-apps). Some hosting providers require this. 
+The project already comes with `@sveltejs/adapter-auto` which automatically detects your deployment environment. We just need to configure it as a SPA. We can also use static adapter with a fallback page as explained [here](https://svelte.dev/docs/kit/single-page-apps). Some hosting providers require this.
 
 Create `src/routes/+layout.ts` to configure SPA mode:
 
 ```typescript
-export const csr = true;        // Enable client-side rendering
-export const ssr = false;       // Disable server-side rendering
+export const csr = true; // Enable client-side rendering
+export const ssr = false; // Disable server-side rendering
 export const prerender = false; // Disable prerendering
 ```
 
@@ -258,19 +258,19 @@ This is the magic part! Create `orval.config.cjs`:
 
 ```javascript
 module.exports = {
-    default: {
-        input: {
-            target: 'http://localhost:8000/openapi.json'  // Where to fetch the OpenAPI spec
-        },
-        output: {
-            target: './src/lib/api/gen',                   // Output directory for generated code
-            schemas: './src/lib/api/gen/model',            // Separate directory for TypeScript types
-            client: 'axios',                               // Use axios for HTTP requests
-            mode: 'split',                                 // Generate separate files per endpoint
-            clean: true,                                   // Clean output directory before generating
-            baseUrl: 'http://localhost:8000'               // Base URL for API requests
-        }
-    }
+	default: {
+		input: {
+			target: 'http://localhost:8000/openapi.json' // Where to fetch the OpenAPI spec
+		},
+		output: {
+			target: './src/lib/api/gen', // Output directory for generated code
+			schemas: './src/lib/api/gen/model', // Separate directory for TypeScript types
+			client: 'axios', // Use axios for HTTP requests
+			mode: 'split', // Generate separate files per endpoint
+			clean: true, // Clean output directory before generating
+			baseUrl: 'http://localhost:8000' // Base URL for API requests
+		}
+	}
 };
 ```
 
@@ -504,7 +504,7 @@ Create `src/routes/+page.svelte`:
 npm run dev
 ```
 
-Your app is now running at `http://localhost:5173`! 
+Your app is now running at `http://localhost:5173`!
 
 ## Updating the API
 

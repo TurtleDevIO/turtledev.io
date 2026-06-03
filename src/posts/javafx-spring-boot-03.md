@@ -10,6 +10,7 @@ readingTime: 5
 <div class="table-of-contents">
 
 ### All articles in this series
+
 1. [JavaFX with Spring Boot Part-01: Introduction](/blog/javafx-spring-boot-01)
 2. [JavaFX with Spring Boot Part-02: Basic Integration](/blog/javafx-spring-boot-02)
 3. JavaFX with Spring Boot Part-03: Advanced Integration
@@ -17,7 +18,6 @@ readingTime: 5
 5. [JavaFX with Spring Boot Part-05: FxWeaver Integration](/blog/javafx-spring-boot-05)
 
 </div>
-
 
 In the previous article, we've seen a basic/minimal integration of Spring boot with JavaFX. In this article we're going to see some extra wiring up to get the most out of Spring Boot.
 
@@ -45,7 +45,6 @@ In the previous article, we had extended JavaFX's `Application` abstract class b
 ## Closing the Application Context
 
 According to the official docs, `stop` method "provides a convenient place to prepare for application exit and destroy resources". It is the right place to close the application context as well as to terminate the UI thread by calling `Platform.exit()`.
-
 
 ```java
   @Override
@@ -132,7 +131,6 @@ Finally, lets publish the event in the `start` method.
 We're ready to run our application. You should see something similar.
 
 ![spring initialz configuration](/images/posts/javafx-spring-boot-starter-03-01.png)
-
 
 In the next article, we'll use `FXWeaver`.
 

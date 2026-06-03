@@ -9,11 +9,9 @@ readingTime: 3
 
 This post was originally written in 2022 when I was building my first static blog with SvelteKit. The blog you're reading now — turtledev.io — is the evolved version of that experiment, now running on SvelteKit 5 with Svelte runes, TypeScript, TailwindCSS v4, and DaisyUI.
 
-
 ## Why a static blog instead of Wordpress?
 
 I have a WordPress [blog](https://hrzafer.com/) in Turkish since 2008 which has around 60 technical posts. Although I haven't written any posts for years, it still generates around 5K visitors per month. In short, I am an experienced WordPress user who still uses it.
-
 
 Since this blog would be mostly about software engineering and my open source projects on GitHub, it just felt right to host it on GitHub in the first place. On top of that, it brings the following advantages:
 
@@ -37,11 +35,9 @@ That's why instead of some SSGs such as Jekyll, Gatsby, and Hugo that require mu
 
 In summary, SvelteKit is way more flexible and capable than regular SSGs. As a trade-off you have to code a blog from scratch — but that's exactly the point. Three years later, turtledev.io is still built on SvelteKit, now upgraded to SvelteKit 5 with Svelte runes. The investment paid off.
 
-
 ## Why blogging now?
 
 After many years, I've finally found the motivation to start a blog in English, because I decided to contribute more on my open source projects on GitHub and I want to write about them.
-
 
 ## Where to Start
 

@@ -1,8 +1,8 @@
 ---
-title: "SvelteKit SPA: onMount vs page.ts (awaited) vs page.ts (stream)"
-description: "A scored, scenario-by-scenario comparison of the three main data loading approaches in SvelteKit SPA mode, with a concrete recommendation on which to use and when."
-date: "2026-05-11"
-categories: ["sveltekit", "svelte", "spa"]
+title: 'SvelteKit SPA: onMount vs page.ts (awaited) vs page.ts (stream)'
+description: 'A scored, scenario-by-scenario comparison of the three main data loading approaches in SvelteKit SPA mode, with a concrete recommendation on which to use and when.'
+date: '2026-05-11'
+categories: ['sveltekit', 'svelte', 'spa']
 published: true
 readingTime: 15
 ---
@@ -18,14 +18,14 @@ Reads and writes use the same pattern. Call a function, await the result, update
 ```ts
 // reading
 onMount(async () => {
-    const { data } = await getTodos();
-    todos = data;
+	const { data } = await getTodos();
+	todos = data;
 });
 
 // writing
 async function handleCreate(title: string) {
-    const { data } = await createTodo({ title });
-    todos = [...todos, data];
+	const { data } = await createTodo({ title });
+	todos = [...todos, data];
 }
 ```
 
@@ -36,13 +36,13 @@ Reads happen in the load function before the component exists. Writes happen in 
 ```ts
 // +page.ts
 export const load: PageLoad = async () => {
-    return { todos: await getTodos().then((r) => r.data) };
+	return { todos: await getTodos().then((r) => r.data) };
 };
 
 // +page.svelte
 async function handleCreate(title: string) {
-    await createTodo({ title });
-    await invalidate('app:todos');
+	await createTodo({ title });
+	await invalidate('app:todos');
 }
 ```
 
@@ -53,14 +53,14 @@ The load function returns an unawaited promise instead of resolved data. The com
 ```ts
 // +page.ts
 export const load: PageLoad = ({ depends }) => {
-    depends('app:todos');
-    return { todos: getTodos().then((r) => r.data) };
+	depends('app:todos');
+	return { todos: getTodos().then((r) => r.data) };
 };
 
 // +page.svelte
 async function handleCreate(title: string) {
-    await createTodo({ title });
-    await invalidate('app:todos');
+	await createTodo({ title });
+	await invalidate('app:todos');
 }
 ```
 
@@ -76,8 +76,8 @@ After a mutation, you update local state manually. The simplest option is to app
 
 ```ts
 async function handleCreate(title: string) {
-    const { data } = await createTodo({ title });
-    todos = [...todos, data];
+	const { data } = await createTodo({ title });
+	todos = [...todos, data];
 }
 ```
 
@@ -85,9 +85,9 @@ Or re-fetch the full list to sync with the server:
 
 ```ts
 async function handleCreate(title: string) {
-    await createTodo({ title });
-    const { data } = await getTodos();
-    todos = data;
+	await createTodo({ title });
+	const { data } = await getTodos();
+	todos = data;
 }
 ```
 
@@ -99,8 +99,8 @@ Both versions handle mutations identically: call the API, then invalidate the de
 
 ```ts
 async function handleCreate(title: string) {
-    await createTodo({ title });
-    await invalidate('app:todos');
+	await createTodo({ title });
+	await invalidate('app:todos');
 }
 ```
 
@@ -121,19 +121,17 @@ let profile = $state({ name: '', email: '' });
 let original = $state({ name: '', email: '' });
 
 onMount(async () => {
-    const { data } = await getProfile();
-    profile = { ...data };
-    original = { ...data };
+	const { data } = await getProfile();
+	profile = { ...data };
+	original = { ...data };
 });
 
 async function handleSave() {
-    await patchProfile(profile);
-    original = { ...profile };
+	await patchProfile(profile);
+	original = { ...profile };
 }
 
-const isDirty = $derived(
-    profile.name !== original.name || profile.email !== original.email
-);
+const isDirty = $derived(profile.name !== original.name || profile.email !== original.email);
 ```
 
 You need a separate `original` to compare against, and you have to update it manually after a successful save.
@@ -147,17 +145,15 @@ let { data } = $props();
 let form = $state({ name: data.profile.name, email: data.profile.email });
 
 async function handleSave() {
-    await patchProfile(form);
-    await invalidate('app:profile');
+	await patchProfile(form);
+	await invalidate('app:profile');
 }
 ```
 
 Because `data.profile` is resolved data, you can compare it against `form` to detect unsaved changes:
 
 ```ts
-const isDirty = $derived(
-    form.name !== data.profile.name || form.email !== data.profile.email
-);
+const isDirty = $derived(form.name !== data.profile.name || form.email !== data.profile.email);
 ```
 
 ### page.ts (stream)
@@ -169,11 +165,13 @@ let { data } = $props();
 let form = $state<Profile | null>(null);
 
 $effect(() => {
-    let stale = false;
-    data.profile.then((profile) => {
-        if (!stale) form = { ...profile };
-    });
-    return () => { stale = true; };
+	let stale = false;
+	data.profile.then((profile) => {
+		if (!stale) form = { ...profile };
+	});
+	return () => {
+		stale = true;
+	};
 });
 ```
 
@@ -193,14 +191,14 @@ let loading = $state(true);
 let error = $state(false);
 
 onMount(async () => {
-    try {
-        const { data } = await getTodos();
-        todos = data;
-    } catch {
-        error = true;
-    } finally {
-        loading = false;
-    }
+	try {
+		const { data } = await getTodos();
+		todos = data;
+	} catch {
+		error = true;
+	} finally {
+		loading = false;
+	}
 });
 ```
 
@@ -270,12 +268,14 @@ import { page } from '$app/state';
 let todo = $state<Todo | null>(null);
 
 $effect(() => {
-    const id = page.params.id;
-    let stale = false;
-    getTodo(id).then(({ data }) => {
-        if (!stale) todo = data;
-    });
-    return () => { stale = true; };
+	const id = page.params.id;
+	let stale = false;
+	getTodo(id).then(({ data }) => {
+		if (!stale) todo = data;
+	});
+	return () => {
+		stale = true;
+	};
 });
 ```
 
@@ -288,12 +288,12 @@ The load function receives `params` as an argument. SvelteKit re-runs it automat
 ```ts
 // awaited
 export const load: PageLoad = async ({ params }) => {
-    return { todo: await getTodo(params.id).then((r) => r.data) };
+	return { todo: await getTodo(params.id).then((r) => r.data) };
 };
 
 // stream
 export const load: PageLoad = ({ params }) => {
-    return { todo: getTodo(params.id).then((r) => r.data) };
+	return { todo: getTodo(params.id).then((r) => r.data) };
 };
 ```
 
@@ -329,16 +329,16 @@ We left this out because in practice it is not a meaningful difference. If you u
 
 Here is our final score table:
 
-| | onMount | page.ts (awaited) | page.ts (stream) |
-|---|:---:|:---:|:---:|
-| Mental model | 1 | 0 | 0 |
-| Mutations | 0 | 1 | 1 |
-| Editable forms | 0 | 1 | 0 |
-| Loading state | 0.5 | 0 | 1 |
-| Preloading | 0 | 1 | 1 |
-| Param reactivity | 0 | 1 | 1 |
-| Framework agnostic | 1 | 0 | 0 |
-| **Total** | **2.5** | **4** | **4** |
+|                    | onMount | page.ts (awaited) | page.ts (stream) |
+| ------------------ | :-----: | :---------------: | :--------------: |
+| Mental model       |    1    |         0         |        0         |
+| Mutations          |    0    |         1         |        1         |
+| Editable forms     |    0    |         1         |        0         |
+| Loading state      |   0.5   |         0         |        1         |
+| Preloading         |    0    |         1         |        1         |
+| Param reactivity   |    0    |         1         |        1         |
+| Framework agnostic |    1    |         0         |        0         |
+| **Total**          | **2.5** |       **4**       |      **4**       |
 
 `onMount` wins on mental model and framework agnosticism. It gives you full control, but that control comes with responsibility. If you know what you are doing, building a SPA entirely with `onMount` is not wrong.
 

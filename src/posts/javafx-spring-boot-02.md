@@ -10,6 +10,7 @@ readingTime: 4
 <div class="table-of-contents">
 
 ### All articles in this series
+
 1. [JavaFX with Spring Boot Part-01: Introduction](/blog/javafx-spring-boot-01)
 2. JavaFX with Spring Boot Part-02: Basic Integration
 3. [JavaFX with Spring Boot Part-03: Advanced Integration](/blog/javafx-spring-boot-03)
@@ -17,7 +18,6 @@ readingTime: 4
 5. [JavaFX with Spring Boot Part-05: FxWeaver Integration](/blog/javafx-spring-boot-05)
 
 </div>
-
 
 In the article, I will present how to setup a JavaFX project with Spring Boot. This will be a super simple application only to demonstrate the initial setup.
 
@@ -43,7 +43,6 @@ public class SpringBootApp {
 ```
 
 At this point, we haven't even added JavaFx as a dependency to our project.
-
 
 ## Setting up the initial JavaFX Hello World app
 
@@ -94,7 +93,6 @@ In theory, we could merge move `@SpringBootApplication` and the `main` method in
 Error: JavaFX runtime components are missing, and are required to run this application
 ```
 
-
 Let's not forget to let Spring know that this is not a web application by adding the following to `application.properties`.
 
 ```ini
@@ -103,9 +101,7 @@ spring.main.web-application-type=none
 
 Now if we run our `SpringBootApp` we should see something like this:
 
-
 ![spring boot project structure](/images/posts/javafx-spring-boot-starter-02-03.png)
-
 
 ## Conclusion
 

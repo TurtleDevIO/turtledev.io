@@ -10,6 +10,7 @@ readingTime: 6
 <div class="table-of-contents">
 
 ### All articles in this series
+
 1. [JavaFX with Spring Boot Part-01: Introduction](/blog/javafx-spring-boot-01)
 2. [JavaFX with Spring Boot Part-02: Basic Integration](/blog/javafx-spring-boot-02)
 3. [JavaFX with Spring Boot Part-03: Advanced Integration](/blog/javafx-spring-boot-03)
@@ -18,9 +19,7 @@ readingTime: 6
 
 </div>
 
-
 In the previous article, we've seen how to wire up a JavaFX application with Spring Boot properly. However, the user interface was super simple and was implemented with pure Java code. In an ideal world, we want to separate the user interface from the application logic. With FXML, we define our view as XML, assign a controller Java class for each view, and implement the business model and application on the Java side. Hence we're using a MVC approach. Another reason is, it is much easier to build a view with the [SceneBuilder](https://gluonhq.com/products/scene-builder/).
-
 
 Let's make our application a little bit more functional. We will be building a simple google search window.
 
@@ -37,7 +36,6 @@ First, we need to add the Maven dependency for FXML:
     <version>${javafx.version}</version>
 </dependency>
 ```
-
 
 Let's define our simple user interface with FXML:
 
@@ -87,7 +85,6 @@ public class MainController {
 ```
 
 Notice `MainController` requires a `HostServices` object in its constructor. Spring will be responsible for creating an instance and passing it into the constructor. But we need to tell Spring how to crete such a bean.
-
 
 Add the following line into the `init` method of `JavaFxApp`:
 

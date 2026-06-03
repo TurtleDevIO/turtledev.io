@@ -41,11 +41,10 @@ Once you see the app this way, the three questions above answer themselves:
 
 Here is how that maps to concrete UI across both operation types:
 
-| | In progress | Success | Error |
-| --- | --- | --- | --- |
-| Data load | Inline skeleton via [`{#await}`](https://svelte.dev/docs/svelte/await-expressions) | data appears | Inline error via `{:catch}` |
-| Mutation | Disabled button | Toast (or silent) | Toast |
-
+|           | In progress                                                                        | Success           | Error                       |
+| --------- | ---------------------------------------------------------------------------------- | ----------------- | --------------------------- |
+| Data load | Inline skeleton via [`{#await}`](https://svelte.dev/docs/svelte/await-expressions) | data appears      | Inline error via `{:catch}` |
+| Mutation  | Disabled button                                                                    | Toast (or silent) | Toast                       |
 
 ## Data loading: streaming with promises
 
@@ -65,8 +64,8 @@ With streaming, the load function returns immediately without blocking navigatio
 ```ts
 // +page.ts
 export const load: PageLoad = ({ depends }) => {
-    depends('app:todos');
-    return { todos: getTodos().then((r) => r.data) };
+	depends('app:todos');
+	return { todos: getTodos().then((r) => r.data) };
 };
 ```
 
@@ -93,8 +92,8 @@ import { getTodos } from '$lib/api/gen/todos';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = ({ depends }) => {
-    depends('app:todos');
-    return { todos: getTodos().then((r) => r.data) };
+	depends('app:todos');
+	return { todos: getTodos().then((r) => r.data) };
 };
 ```
 
@@ -154,21 +153,21 @@ let nextId = 0;
 const toasts = $state<Toast[]>([]);
 
 function show(type: Toast['type'], message: string) {
-    const id = nextId++;
-    toasts.push({ id, type, message });
-    setTimeout(() => {
-        const i = toasts.findIndex((t) => t.id === id);
-        if (i !== -1) toasts.splice(i, 1);
-    }, 4000);
+	const id = nextId++;
+	toasts.push({ id, type, message });
+	setTimeout(() => {
+		const i = toasts.findIndex((t) => t.id === id);
+		if (i !== -1) toasts.splice(i, 1);
+	}, 4000);
 }
 
 export function getToasts() {
-    return toasts;
+	return toasts;
 }
 
 export const toast = {
-    success: (message: string) => show('success', message),
-    error: (message: string) => show('error', message)
+	success: (message: string) => show('success', message),
+	error: (message: string) => show('error', message)
 };
 ```
 
@@ -409,7 +408,7 @@ Create `frontend/src/lib/components/TodoItem.svelte`:
 
 A few things worth calling out:
 
-**Booleans instead of nullable IDs.** In a flat list in `+page.svelte` you need `togglingId: number | null` to know *which* row is busy. Inside the component, each instance only cares about itself, so `toggling: boolean` is enough.
+**Booleans instead of nullable IDs.** In a flat list in `+page.svelte` you need `togglingId: number | null` to know _which_ row is busy. Inside the component, each instance only cares about itself, so `toggling: boolean` is enough.
 
 **No success toast for toggle.** The checkbox flipping is the feedback. A toast on top would be noisy. We do toast on delete because the row disappearing is easy to miss.
 

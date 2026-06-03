@@ -1,8 +1,8 @@
 ---
-title: "SvelteKit SPA: when to use onMount, page.ts (awaited), and page.ts (stream)"
+title: 'SvelteKit SPA: when to use onMount, page.ts (awaited), and page.ts (stream)'
 description: "A practical guide to picking the right data loading pattern for each page in a SvelteKit SPA. All three approaches have a place; here's how to choose."
-date: "2026-05-13"
-categories: ["sveltekit", "svelte", "spa"]
+date: '2026-05-13'
+categories: ['sveltekit', 'svelte', 'spa']
 published: true
 readingTime: 8
 ---
@@ -44,10 +44,10 @@ let messages = $state<Message[]>([]);
 let ws: WebSocket;
 
 onMount(() => {
-    ws = new WebSocket('wss://api.example.com/chat');
-    ws.onmessage = (e) => {
-        messages = [...messages, JSON.parse(e.data)];
-    };
+	ws = new WebSocket('wss://api.example.com/chat');
+	ws.onmessage = (e) => {
+		messages = [...messages, JSON.parse(e.data)];
+	};
 });
 
 onDestroy(() => ws?.close());
@@ -64,15 +64,15 @@ let stats = $state<Stats | null>(null);
 let timer: ReturnType<typeof setInterval>;
 
 onMount(() => {
-    refresh();
-    timer = setInterval(refresh, 5000);
+	refresh();
+	timer = setInterval(refresh, 5000);
 });
 
 onDestroy(() => clearInterval(timer));
 
 async function refresh() {
-    const { data } = await getStats();
-    stats = data;
+	const { data } = await getStats();
+	stats = data;
 }
 ```
 
@@ -82,12 +82,12 @@ Tracking XHR progress events requires a long-lived handler that can update react
 
 ```ts
 function handleUpload(file: File) {
-    const xhr = new XMLHttpRequest();
-    xhr.upload.onprogress = (e) => {
-        progress = (e.loaded / e.total) * 100;
-    };
-    xhr.open('POST', '/upload');
-    xhr.send(file);
+	const xhr = new XMLHttpRequest();
+	xhr.upload.onprogress = (e) => {
+		progress = (e.loaded / e.total) * 100;
+	};
+	xhr.open('POST', '/upload');
+	xhr.send(file);
 }
 ```
 
@@ -111,8 +111,8 @@ With awaited, the load function awaits the request before returning:
 ```ts
 // +page.ts
 export const load: PageLoad = async ({ depends }) => {
-    depends('app:profile');
-    return { profile: await getProfile().then((r) => r.data) };
+	depends('app:profile');
+	return { profile: await getProfile().then((r) => r.data) };
 };
 ```
 
@@ -170,15 +170,15 @@ That gives you a skeleton without giving up the clean `data.profile` reference.
 
 ## Use `page.ts` (stream) for lists, dashboards, and everything else
 
-This is the default. For any page where the data is the *content* (not a form to edit), stream wins. For a complete working example of this pattern, see [Tutorial 4: Building the Todo CRUD UI](/blog/fastapi-tutorial-4-todo-crud-ui).
+This is the default. For any page where the data is the _content_ (not a form to edit), stream wins. For a complete working example of this pattern, see [Tutorial 4: Building the Todo CRUD UI](/blog/fastapi-tutorial-4-todo-crud-ui).
 
 A typical list page:
 
 ```ts
 // +page.ts
 export const load: PageLoad = ({ depends }) => {
-    depends('app:todos');
-    return { todos: getTodos().then((r) => r.data) };
+	depends('app:todos');
+	return { todos: getTodos().then((r) => r.data) };
 };
 ```
 
@@ -210,11 +210,11 @@ Plus the usual load function benefits (these apply to `page.ts` (awaited) too): 
 
 ## A quick recap
 
-| If the page... | Use |
-|---|---|
-| ... has subscriptions, polling, or other lifecycle needs | `onMount` |
-| ... is an editable form with one entity | `page.ts` (awaited) |
-| ... loads content for the user to view or interact with | `page.ts` (stream) |
+| If the page...                                           | Use                 |
+| -------------------------------------------------------- | ------------------- |
+| ... has subscriptions, polling, or other lifecycle needs | `onMount`           |
+| ... is an editable form with one entity                  | `page.ts` (awaited) |
+| ... loads content for the user to view or interact with  | `page.ts` (stream)  |
 
 Most real apps will end up using all three. A typical project of mine has a handful of list and dashboard pages on stream, one or two settings pages on awaited, and a page or two with `onMount` for realtime or device-specific features. That's not a sign that your codebase is inconsistent. It's a sign that different pages have different shapes, and SvelteKit gives you the right tool for each.
 

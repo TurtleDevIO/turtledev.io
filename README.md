@@ -98,10 +98,10 @@ Create a new markdown file in `src/posts/`:
 
 ```markdown
 ---
-title: "Your Post Title"
-description: "Brief description"
-date: "2025-01-15"
-categories: ["category1", "category2"]
+title: 'Your Post Title'
+description: 'Brief description'
+date: '2025-01-15'
+categories: ['category1', 'category2']
 published: true
 ---
 

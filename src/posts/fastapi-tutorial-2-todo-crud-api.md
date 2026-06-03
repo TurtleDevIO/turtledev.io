@@ -222,10 +222,10 @@ curl -X POST http://localhost:8000/todos \
 
 ```json
 {
-  "id": 1,
-  "title": "Buy groceries",
-  "completed": false,
-  "created_at": "2026-04-22T10:00:00Z"
+	"id": 1,
+	"title": "Buy groceries",
+	"completed": false,
+	"created_at": "2026-04-22T10:00:00Z"
 }
 ```
 
@@ -254,10 +254,10 @@ curl -X PATCH http://localhost:8000/todos/1 \
 
 ```json
 {
-  "id": 1,
-  "title": "Buy groceries",
-  "completed": true,
-  "created_at": "2026-04-22T10:00:00Z"
+	"id": 1,
+	"title": "Buy groceries",
+	"completed": true,
+	"created_at": "2026-04-22T10:00:00Z"
 }
 ```
 
@@ -316,7 +316,6 @@ settings = Settings()
 ```
 
 The default allows `localhost:5173` (the default SvelteKit dev server port) for local development. In production you'd override this with your actual frontend domain via environment variable.
-
 
 <Callout type="info">
 
@@ -377,7 +376,7 @@ If you haven't set up the REST Client extension yet, check [Tutorial 1](/blog/fa
 Try them in order. After creating two todos, GET /todos should return both. After patching todo 1, only `completed` should change - `title` stays the same. The 404 request at the end should return:
 
 ```json
-{"detail": "Todo not found"}
+{ "detail": "Todo not found" }
 ```
 
 ### Interactive Docs

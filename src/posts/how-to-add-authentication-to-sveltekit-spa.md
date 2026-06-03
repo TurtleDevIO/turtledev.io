@@ -1,8 +1,8 @@
 ---
-title: "How to Add Authentication to a SvelteKit SPA"
-description: "Learn how to implement authentication in a SvelteKit SPA with HTTP-only cookies, reactive auth state, and protected routes using a clean, straightforward approach."
-date: "2025-10-22"
-categories: ["svelte", "authentication", "spa", "fastapi"]
+title: 'How to Add Authentication to a SvelteKit SPA'
+description: 'Learn how to implement authentication in a SvelteKit SPA with HTTP-only cookies, reactive auth state, and protected routes using a clean, straightforward approach.'
+date: '2025-10-22'
+categories: ['svelte', 'authentication', 'spa', 'fastapi']
 published: true
 readingTime: 30
 ---
@@ -137,7 +137,6 @@ Before we dive into the code, here are the important security concepts we're imp
 
 **Session Validation on Every Request**: Here's a critical principle - never trust the client. Every single protected endpoint validates the session cookie before processing the request. The frontend auth state is just for UX; real security happens on the backend.
 
-
 ## Backend Implementation
 
 <Callout type="warning">
@@ -246,7 +245,6 @@ app.add_middleware(
 
 That `allow_credentials=True` is essential - without it, the browser won't send or receive cookies in cross-origin requests.
 
-
 ## Frontend Implementation
 
 Now for the fun part - building a clean, reactive authentication system for our SvelteKit SPA. Since we're building a pure client-side app (no SSR), we have full control over the auth flow. We'll break this into three pieces: configuring axios, creating an auth store, and managing sessions.
@@ -284,22 +282,22 @@ We'll use Svelte 5's runes to create a simple, reactive auth store:
 import type { User } from '$lib/api/gen/model';
 
 class AuthStore {
-    user = $state<User | null>(null);
-    isLoading = $state(true);
+	user = $state<User | null>(null);
+	isLoading = $state(true);
 
-    get isAuthenticated(): boolean {
-        return this.user !== null;
-    }
+	get isAuthenticated(): boolean {
+		return this.user !== null;
+	}
 
-    setUser(user: User | null) {
-        this.user = user;
-        this.isLoading = false;
-    }
+	setUser(user: User | null) {
+		this.user = user;
+		this.isLoading = false;
+	}
 
-    clear() {
-        this.user = null;
-        this.isLoading = false;
-    }
+	clear() {
+		this.user = null;
+		this.isLoading = false;
+	}
 }
 
 export const authStore = new AuthStore();
@@ -319,36 +317,35 @@ let lastSuccessfulCheck = 0;
 const AUTH_CHECK_EXPIRES_MS = 20000; // 20 seconds
 
 export async function ensureAuthenticated(): Promise<boolean> {
-    const now = Date.now();
+	const now = Date.now();
 
-    // Skip check if user is authenticated and we verified recently
-    if (authStore.isAuthenticated && now - lastSuccessfulCheck < AUTH_CHECK_EXPIRES_MS) {
-        return true;
-    }
+	// Skip check if user is authenticated and we verified recently
+	if (authStore.isAuthenticated && now - lastSuccessfulCheck < AUTH_CHECK_EXPIRES_MS) {
+		return true;
+	}
 
-    // Show loading spinner only on initial auth check
-    if (!authStore.isAuthenticated) {
-        authStore.setLoading(true);
-    }
+	// Show loading spinner only on initial auth check
+	if (!authStore.isAuthenticated) {
+		authStore.setLoading(true);
+	}
 
-    try {
-        const response = await api.getCurrentUser();
-        authStore.setUser(response.data);
-        lastSuccessfulCheck = now;
-        return true;
-    } catch (error) {
-        authStore.clear();
-        window.location.href = '/login';
-        return false;
-    }
+	try {
+		const response = await api.getCurrentUser();
+		authStore.setUser(response.data);
+		lastSuccessfulCheck = now;
+		return true;
+	} catch (error) {
+		authStore.clear();
+		window.location.href = '/login';
+		return false;
+	}
 }
 ```
 
 <Callout type="info">
 
-**About the 20-second cache**: This is NOT the same as your session expiry time. This is purely a performance optimization to avoid hammering the `/users/me` endpoint. Your actual session might last 30-60 minutes on the backend. Backend still validates the session on every call. 
+**About the 20-second cache**: This is NOT the same as your session expiry time. This is purely a performance optimization to avoid hammering the `/users/me` endpoint. Your actual session might last 30-60 minutes on the backend. Backend still validates the session on every call.
 </Callout>
-
 
 ### Step 4: Protect Routes with a Layout
 
@@ -381,6 +378,7 @@ Instead of calling `ensureAuthenticated()` in every protected page, we can use S
 ```
 
 The three states handle:
+
 1. **Loading**: Shows while we're checking authentication
 2. **Authenticated**: Renders the protected pages
 3. **Not authenticated**: Fallback state (rarely shown since `ensureAuthenticated` redirects)
@@ -407,15 +405,15 @@ Logging out is straightforward:
 
 ```typescript
 export async function logout(): Promise<void> {
-    try {
-        await api.logout();
-    } catch (error) {
-        console.error('Logout failed:', error);
-    } finally {
-        authStore.clear();
-        lastSuccessfulCheck = 0;
-        goto('/login');
-    }
+	try {
+		await api.logout();
+	} catch (error) {
+		console.error('Logout failed:', error);
+	} finally {
+		authStore.clear();
+		lastSuccessfulCheck = 0;
+		goto('/login');
+	}
 }
 ```
 

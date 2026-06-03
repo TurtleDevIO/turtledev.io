@@ -1,8 +1,8 @@
 ---
-title: "Hello World - My First Blog Post"
-description: "Welcome to my blog! This is my first post where I introduce myself and share what you can expect from this blog."
-date: "2025-01-15"
-categories: ["meta", "introduction"]
+title: 'Hello World - My First Blog Post'
+description: 'Welcome to my blog! This is my first post where I introduce myself and share what you can expect from this blog.'
+date: '2025-01-15'
+categories: ['meta', 'introduction']
 published: true
 readingTime: 2
 ---

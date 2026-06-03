@@ -63,7 +63,7 @@ fullstack-fastapi-tutorial/
 
 ## Configuring SvelteKit as a Pure SPA
 
- To turn SvelteKit into a pure SPA, we're going to do two things: configure the adapter fallback and disable SSR globally.
+To turn SvelteKit into a pure SPA, we're going to do two things: configure the adapter fallback and disable SSR globally.
 
 <Callout type="info">
 
@@ -137,9 +137,9 @@ Add a `generate` script to `package.json`:
 
 ```json
 {
-  "scripts": {
-    "generate": "orval"
-  }
+	"scripts": {
+		"generate": "orval"
+	}
 }
 ```
 
@@ -239,10 +239,10 @@ And `Todo` in `src/lib/api/gen/model/todo.ts` is a direct mirror of our Python P
 
 ```ts
 export interface Todo {
-  id: number;
-  title: string;
-  completed: boolean;
-  created_at: string;
+	id: number;
+	title: string;
+	completed: boolean;
+	created_at: string;
 }
 ```
 

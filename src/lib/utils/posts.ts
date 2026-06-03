@@ -15,7 +15,11 @@ export async function getPosts(): Promise<Post[]> {
 	let posts: Post[] = [];
 
 	// Import raw markdown content
-	const mdPaths = import.meta.glob('/src/posts/*.md', { eager: true, query: '?raw', import: 'default' });
+	const mdPaths = import.meta.glob('/src/posts/*.md', {
+		eager: true,
+		query: '?raw',
+		import: 'default'
+	});
 
 	// Import metadata
 	const metaPaths = import.meta.glob('/src/posts/*.md', { eager: true });
@@ -31,7 +35,7 @@ export async function getPosts(): Promise<Post[]> {
 			let readingTime = metadata.readingTime;
 			if (!readingTime) {
 				const rawPath = path + '?raw';
-				const rawContent = mdPaths[rawPath] as string || '';
+				const rawContent = (mdPaths[rawPath] as string) || '';
 				readingTime = calculateReadingTime(rawContent);
 			}
 

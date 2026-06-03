@@ -10,6 +10,7 @@ readingTime: 7
 <div class="table-of-contents">
 
 ### All articles in this series
+
 1. [JavaFX with Spring Boot Part-01: Introduction](/blog/javafx-spring-boot-01)
 2. [JavaFX with Spring Boot Part-02: Basic Integration](/blog/javafx-spring-boot-02)
 3. [JavaFX with Spring Boot Part-03: Advanced Integration](/blog/javafx-spring-boot-03)
@@ -18,9 +19,7 @@ readingTime: 7
 
 </div>
 
-
 In the previous article, we've learnt how to let Spring take care of creating controllers for FXML views and everything else on the java side. At this point we already have a full JavaFX and Spring integration. In this article, we'll lift the integration one level up. In other words, we'll make use of Spring even more.
-
 
 ### Why FxWeaver?
 
@@ -224,7 +223,6 @@ public class MainController {
 ```
 
 There are two main changes from the previous version here. First, we add `FxWeaver` as a class member and getting it from the constructor. Remember that `FxWeaver` object will be created and passed to the constructor by Spring. Second change is the `aboutMenuItemClicked` method. See how we are creating an instance of `AboutController` and calling its `show` method. One important detail is that Spring creates objects in `Singleton` scope by default. Which means, even if we call the `fxWeaver.loadController(AboutController.class).show()` from multiple places for many times, there will be only one `AboutController` instance. A great way of avoiding memory leaks.
-
 
 Finally, I'll show you a simple trick to shorten the code above. With the `@RequiredArgsConstructor` annotation of Lombok, we can remove the constructor. This is especially nice when there are two or more `final` class variables.
 
