@@ -17,7 +17,7 @@ By the end of this tutorial, you'll have a fully working REST API with endpoints
 
 <Callout type="promo">
 
-**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready FastAPI + SvelteKit starter with authentication, payments, and more built-in.
+**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) (FastAPI + SvelteKit) or [FastReact](https://fastreact.dev) (FastAPI + React) - production-ready starters with authentication, payments, and more built-in.
 
 </Callout>
 
@@ -387,7 +387,7 @@ FastAPI generates interactive Swagger docs at [http://localhost:8000/docs](http:
 
 <Callout type="promo">
 
-**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready FastAPI + SvelteKit starter with authentication, payments, and more built-in.
+**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) (FastAPI + SvelteKit) or [FastReact](https://fastreact.dev) (FastAPI + React) - production-ready starters with authentication, payments, and more built-in.
 
 </Callout>
 
