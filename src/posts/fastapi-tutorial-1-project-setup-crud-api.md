@@ -17,7 +17,7 @@ In this tutorial, we'll set up a FastAPI project with modern tooling using `uv` 
 
 <Callout type="promo">
 
-**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready FastAPI + SvelteKit starter with authentication, payments, and more built-in.
+**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) (FastAPI + SvelteKit) or [FastReact](https://fastreact.dev) (FastAPI + React) - production-ready starters with authentication, payments, and more built-in.
 
 </Callout>
 
@@ -320,7 +320,7 @@ Each folder will have its own `.gitignore` file for its specific needs. For exam
 
 <Callout type="promo">
 
-**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) - a production-ready FastAPI + SvelteKit starter with authentication, payments, and more built-in.
+**Building a production app?** Check out [FastSvelte](https://fastsvelte.dev) (FastAPI + SvelteKit) or [FastReact](https://fastreact.dev) (FastAPI + React) - production-ready starters with authentication, payments, and more built-in.
 
 </Callout>
 
