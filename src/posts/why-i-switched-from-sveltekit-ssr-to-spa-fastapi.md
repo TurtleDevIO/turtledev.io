@@ -106,4 +106,6 @@ In the coming weeks, I'll be diving deeper into:
 
 **See also:** [Full-stack FastAPI Tutorial 1: Project Setup & Tooling](/blog/fastapi-tutorial-1-project-setup-crud-api)
 
+**Related:** [Using FastAPI with Svelte](https://fastsvelte.dev/fastapi-svelte) - how the SPA + API pairing works in production.
+
 Smooth coding!
